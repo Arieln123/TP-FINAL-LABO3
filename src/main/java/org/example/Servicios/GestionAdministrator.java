@@ -81,7 +81,7 @@ public class GestionAdministrator  {
             admin.setId(sc.nextInt());
 
             if (!adminRepo.existe(admin)) {
-                System.out.println("Error al eliminar, el numero de ID no pertenece a ningun cliente");
+                System.out.println("Error al eliminar, el numero de ID no pertenece a ningun administrador");
             } else {
                 adminRepo.eliminar(admin);
                 System.out.println("El Administrador se ha eliminado correctamente");
