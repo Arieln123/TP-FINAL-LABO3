@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PassengerRepo implements IRepository<Passenger>{
-    private final File pathJson = new File("src/main/java/org/example/Archivos/Administrators.json");
+    private final File pathJson = new File("src/main/java/org/example/Archivos/Passengers.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private ArrayList<Passenger> passengers;
 
