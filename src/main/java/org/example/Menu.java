@@ -77,6 +77,8 @@ public class Menu {
                     case 2:
                         break;
                     case 3:
+                        System.out.println("asd");
+                        admin.addPassengert();
                         break;
                 }
                 break;
@@ -88,12 +90,16 @@ public class Menu {
                 switch (answerInt(3)) {
                     case 1:
                         admin.deleteAdministrator();
-                        admin.listAdministrator();
+                        administratorMenu();
 
                         break;
                     case 2:
+
                         break;
                     case 3:
+
+
+                        administratorMenu();
                         break;
 
                     case 4:

@@ -9,18 +9,19 @@ public abstract class User {
     private Integer id;
     private String address;
     private String country;
-
+    private String dni;
     private Status status;
     public User() {
     }
 
-    public User(Integer id, String name, String lastName, String address, String country,Status status) {
+    public User(Integer id, String name, String lastName, String address, String country,Status status,String dni) {
         this.name = name;
         this.lastName = lastName;
         this.id = id;
         this.address = address;
         this.country = country;
         this.status=status;
+        this.dni=dni;
     }
 
     //GETTERS AND SETTERS
@@ -72,6 +73,14 @@ public abstract class User {
         this.status = status;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     @Override
     public String toString() {
         return "Id: " + this.getId() + ", Nombre: " + this.getName() + " " + this.getLastName() + ", Direccion: " +
@@ -82,11 +91,11 @@ public abstract class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(getId(), user.getId());
+        return getDni().equals(user.getDni());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getDni());
     }
 }

@@ -1,9 +1,11 @@
 package org.example.Servicios;
 
 import org.example.Modelos.Administrator;
+import org.example.Modelos.Passenger;
 import org.example.Modelos.Status;
 import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
+import org.example.Repositorios.PassengerRepo;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,6 +16,7 @@ public class GestionAdministrator  {
     public static final String RESET = "\u001B[0m";
 
     IRepository<Administrator> adminRepo = new AdministratorRepo();
+    IRepository<Passenger> passengerRepo = new PassengerRepo();
 
     public GestionAdministrator() {
     }
@@ -45,7 +48,8 @@ public class GestionAdministrator  {
 
             System.out.println("Ingrese  Direccion");
             admin.setAddress(sc.next());
-
+            System.out.println("Ingrese  Dni");
+            admin.setDni(sc.next());
 
 
             System.out.println("Ingrese la Pais");
@@ -73,6 +77,63 @@ public class GestionAdministrator  {
         }
         sc.close();
     }
+
+    public void addPassengert(){
+
+        Scanner sc=new Scanner(System.in);
+        Passenger passenger = new Passenger();
+        String seguir = "s";
+
+        while (seguir.equalsIgnoreCase("s")) {
+            System.out.println("Ingrese el nombre");
+            passenger.setName(sc.next());
+
+
+            System.out.println("Ingrese el Apellido");
+            passenger.setLastName(sc.next());
+
+            System.out.println("Ingrese  Direccion");
+            passenger.setAddress(sc.next());
+            System.out.println("Ingrese  Dni");
+            passenger.setDni(sc.next());
+
+
+
+            System.out.println("Ingrese la Pais");
+            passenger.setCountry(sc.next());
+
+            passenger.setId(passengerRepo.listar().size()+1);
+            passenger.setStatus(Status.ACTIVE);
+            try{
+                if (passengerRepo.existe(passenger)==false){
+                    passengerRepo.agregar(passenger);
+                    System.out.println("El nuevo Pasajero se ha agregado"+GREEN+" correctamente"+RESET);
+                }
+                else {
+                    throw new IOException("Este es un error personalizado");
+                }
+            }
+            catch (IOException e){
+                System.out.println(GREEN+"El Pasajero ya existe"+RESET);
+
+            }
+
+
+            System.out.println("¿Desea agregar otro Admin? s/n");
+            seguir = sc.next();
+        }
+        sc.close();
+
+
+
+
+
+
+    }
+
+
+
+
     public void deleteAdministrator() {
         Scanner sc=new Scanner(System.in);
         Administrator admin = new Administrator();
@@ -92,6 +153,7 @@ public class GestionAdministrator  {
             System.out.println("¿Desea eliminar otro Administrador? s/n");
             seguir = sc.next();
         }
+        sc.close();
     }
 
 
