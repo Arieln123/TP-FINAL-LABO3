@@ -7,11 +7,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        GestionAdministrator admin=new GestionAdministrator();
+      /*  GestionAdministrator admin=new GestionAdministrator();
        // admin.addAdministrator();
         admin.listAdministrator();
-        admin.deleteAdministrator();
-
-
+        admin.deleteAdministrator();*/
+        Menu menu=new Menu();
+        menu.startMenu();
     }
 }

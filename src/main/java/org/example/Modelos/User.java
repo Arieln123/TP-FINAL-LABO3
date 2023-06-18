@@ -74,8 +74,8 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "Id: " + this.getId() + ", Nombre: " + this.getName() + " " + this.getLastName() + ", Dirección: " +
-                this.getAddress() + ", País: " + this.getCountry();
+        return "Id: " + this.getId() + ", Nombre: " + this.getName() + " " + this.getLastName() + ", Direccion: " +
+                this.getAddress() + ", Pais: " + this.getCountry();
     }
 
     @Override

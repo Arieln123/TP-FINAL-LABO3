@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class GestionAdministrator  {
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
 
     IRepository<Administrator> adminRepo = new AdministratorRepo();
 
@@ -53,14 +56,14 @@ public class GestionAdministrator  {
             try{
                 if (adminRepo.existe(admin)==false){
                     adminRepo.agregar(admin);
-                    System.out.println("El nuevo Admin se ha agregado correctamente");
+                    System.out.println("El nuevo Admin se ha agregado"+GREEN+" correctamente"+RESET);
                 }
                 else {
                     throw new IOException("Este es un error personalizado");
                 }
             }
             catch (IOException e){
-                System.out.println("“El Admin ya existe”");
+                System.out.println(GREEN+"El Admin ya existe"+RESET);
 
             }
 
@@ -77,14 +80,14 @@ public class GestionAdministrator  {
 
         while (seguir.equalsIgnoreCase("s")) {
 
-            System.out.println("Ingrese el numero de ID del administrador a  eliminar");
+            System.out.println("Ingrese el numero de ID del administrador a  "+RED+"eliminar"+RESET);
             admin.setId(sc.nextInt());
 
             if (!adminRepo.existe(admin)) {
-                System.out.println("Error al eliminar, el numero de ID no pertenece a ningun administrador");
+                System.out.println(RED+"Error"+RESET+" al eliminar, el numero de ID no pertenece a ningun cliente");
             } else {
                 adminRepo.eliminar(admin);
-                System.out.println("El Administrador se ha eliminado correctamente");
+                System.out.println("El Administrador se ha eliminado"+GREEN+" correctamente"+RESET);
             }
             System.out.println("¿Desea eliminar otro Administrador? s/n");
             seguir = sc.next();
