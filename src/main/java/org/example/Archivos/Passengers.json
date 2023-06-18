@@ -1,0 +1,9 @@
+[ {
+  "name" : "Ariel",
+  "lastName" : "Nicosia",
+  "id" : 1,
+  "address" : "Casa123",
+  "country" : "Argentina",
+  "dni" : "35620677",
+  "status" : "ACTIVE"
+} ]
