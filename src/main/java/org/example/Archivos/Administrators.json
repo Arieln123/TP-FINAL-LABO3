@@ -1,0 +1,36 @@
+[ {
+  "name" : "Ariel",
+  "lastName" : "Nicosia",
+  "id" : 1,
+  "address" : "Casa123",
+  "country" : "Argentina",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Sebastian",
+  "lastName" : "Jimenez",
+  "id" : 2,
+  "address" : "SuCasa",
+  "country" : "Argentina",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Tomas",
+  "lastName" : "Nuñes",
+  "id" : 3,
+  "address" : "Casa",
+  "country" : "Argentina",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Juan",
+  "lastName" : "Cruz",
+  "id" : 4,
+  "address" : "Casa",
+  "country" : "Arg",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Daniel",
+  "lastName" : "Sanchez",
+  "id" : 5,
+  "address" : "Sucasa",
+  "country" : "Arg",
+  "status" : "ACTIVE"
+} ]
