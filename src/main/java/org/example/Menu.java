@@ -5,6 +5,7 @@ import org.example.Modelos.Passenger;
 import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
 import org.example.Servicios.GestionAdministrator;
+import  org.example.Modelos.Recepcionist;
 
 
 import java.util.Scanner;
@@ -131,7 +132,7 @@ public class Menu {
             }
 
 
-   /* public void recepcionistMenu(Data data) {
+    public void recepcionistMenu(Data data) {
         System.out.println("Bienvenido RECEPCIONISTA, ingrese su DNI");
         Recepcionist recepcionist = data.getRecepcionists().get(answerInt());
         if (recepcionist == null) {
@@ -214,7 +215,6 @@ public class Menu {
             }
         }/*
     }*/
-
 
 
     }

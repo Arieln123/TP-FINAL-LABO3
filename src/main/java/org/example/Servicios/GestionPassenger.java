@@ -29,7 +29,7 @@ public class GestionPassenger {
         }
     }
 
-    public void addAdministrator() {
+    public void addPassenger() {
         Scanner sc=new Scanner(System.in);
         Passenger pass = new Passenger();
         String seguir = "s";
