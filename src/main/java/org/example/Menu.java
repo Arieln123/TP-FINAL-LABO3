@@ -79,8 +79,8 @@ public class Menu {
         while (seguir.equalsIgnoreCase("s")) {
             System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", que desea hacer?");
             System.out.println(YELLOW+"    1- Listar Administradores"+RESET);
-            System.out.println("    2- Crear usuarios o Habitacion");
-            System.out.println("    3- Eliminar usuarios");
+            System.out.println(GREEN+"    2- Crear usuarios o Habitacion"+RESET);
+            System.out.println(RED+"    3- Eliminar usuarios"+RESET);
             System.out.println("    4-Volver al menu anterior");
             Scanner scanner1 = scanner;
             GestionAdministrator admin = new GestionAdministrator();
@@ -217,9 +217,8 @@ public class Menu {
             System.out.println("que usuario desea" + RED + " eliminar" + RESET);
             System.out.println("1- Administrador");
             System.out.println("2- Recepcionista");
-            System.out.println("3- Pasajero");
-            System.out.println("4- Habitacion");
-            System.out.println("5-Volver");
+            System.out.println("3- Habitacion");
+            System.out.println("4-Volver");
 
             try {
                 opcion = scanner.nextInt();
@@ -233,15 +232,15 @@ public class Menu {
                         admin.deleteAdministrator(scanner);
                     break;
                 case 2:
+                     admin.deleteRecepcionist(scanner);
 
                     break;
                 case 3:
-
+                        GestionRoom room=new GestionRoom();
+                        room.modificar(scanner);
                     break;
-                case 4:
 
-                    break;
-                case  5:
+                case  4:
                     seguir="n";
                     break;
                 default:
@@ -284,19 +283,27 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
+                    System.out.println(YELLOW+"LISTA DE ADMINISTRADORES"+RESET);
                     GestionAdministrator admin = new GestionAdministrator();
                     admin.listAdministrator();
                     break;
                 case 2:
+                    System.out.println(YELLOW+"LISTA DE RECEPCIONISTAS"+RESET);
+
                     GestionRecepcionist recep=new GestionRecepcionist();
                         recep.listRecepcionist();
                     break;
                 case 3:
+                    System.out.println(YELLOW+"LISTA DE PASAJEROS"+RESET);
+
                     GestionPassenger pass =new GestionPassenger();
                     pass.listPassenger();
                     break;
                 case 4:
+                    System.out.println(YELLOW+"LISTA DE HABITACIONES"+RESET);
 
+                    GestionRoom Room=new GestionRoom();
+                        Room.listRoom();
                     break;
                 case  5:
                     seguir="n";

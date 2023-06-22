@@ -5,7 +5,7 @@
   "address" : "Calle_falsa_123",
   "country" : null,
   "dni" : "35620677",
-  "status" : "ACTIVE"
+  "status" : "INACTIVE"
 }, {
   "name" : "Sewbastian",
   "lastName" : "jimenez",
@@ -13,7 +13,7 @@
   "address" : "Esperanto_2533",
   "country" : null,
   "dni" : "38953857",
-  "status" : "ACTIVE"
+  "status" : "INACTIVE"
 }, {
   "name" : "Pinky",
   "lastName" : "Fernandez",

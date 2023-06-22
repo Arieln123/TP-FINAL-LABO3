@@ -62,7 +62,6 @@ public class AdministratorRepo implements IRepository<Administrator> {
         for (Administrator c : this.administrators){
             if(c.equals(objeto)){
                 int index = administrators.indexOf(c);
-                System.out.println(objeto);
                 System.out.println(c);
                 c.setStatus(Status.INACTIVE);
                 administrators.set(index,c);

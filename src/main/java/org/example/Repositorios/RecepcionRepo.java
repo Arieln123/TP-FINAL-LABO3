@@ -2,11 +2,8 @@ package org.example.Repositorios;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import org.example.Modelos.Room;
-import org.example.Modelos.RoomStatus;
-import org.example.Modelos.Status;
-import org.example.Modelos.Recepcionist;
-import org.example.Modelos.Passenger;
+import org.example.Modelos.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ public class RecepcionRepo implements IRepository<Recepcionist> {
         return this.recepcionists;
     }
 
-    //agrega cliente
+
     @Override
     public void agregar(Recepcionist... recepcionists) {
 
@@ -59,9 +56,19 @@ public class RecepcionRepo implements IRepository<Recepcionist> {
 
 
     @Override
-    public void eliminar(Recepcionist recepcionist) {
+    public void eliminar(Recepcionist objeto) {
         cargar();
-        this.recepcionists.get(recepcionist.getId() - 1).setStatus(Status.INACTIVE);
+        System.out.println(objeto.getDni());
+        for (Recepcionist c : this.recepcionists){
+            if(c.equals(objeto)){
+                int index = recepcionists.indexOf(c);
+                System.out.println(c);
+                c.setStatus(Status.INACTIVE);
+                recepcionists.set(index,c);
+                break;
+            }
+        }
+        guardar();
         guardar();
     }
 
@@ -82,6 +89,7 @@ public class RecepcionRepo implements IRepository<Recepcionist> {
     @Override
     public boolean existe(Recepcionist objeto) {
         cargar();
+
         if (this.recepcionists.contains(objeto)) {
             return true;
         } else {

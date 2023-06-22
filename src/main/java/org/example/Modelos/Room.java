@@ -73,7 +73,7 @@ public class Room {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Room room)) return false;
-        return getId() == room.getId() && getType() == room.getType() && getStatus() == room.getStatus() && getDiaInicial().equals(room.getDiaInicial()) && getDiaFinal().equals(room.getDiaFinal());
+        return getId() == room.getId();
     }
 
     @Override

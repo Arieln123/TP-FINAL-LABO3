@@ -23,9 +23,11 @@ public class GestionRoom {
 
         while (seguir.equalsIgnoreCase("s")) {
             roomList = roomRepo.listar();
-            System.out.println("Ingrese el Id");
-            room.setId(sc.nextInt());
-            room.setId(roomList.size()+1);
+           /* System.out.println("Ingrese el Id");
+            room.setId(sc.nextInt());*/
+
+            room.setId(roomRepo.listar().size()+1);
+
             System.out.println("Ingrese el tipo de habitación" + " 1-  SIMPLE, 2-DOBLE, 3-SUITE");
             int input=sc.nextInt();
             switch (input) {
@@ -42,7 +44,7 @@ public class GestionRoom {
             room.setStatus(RoomStatus.DISPONIBLE);
             try{
                 if (!roomRepo.existe(room)){
-                    roomRepo.agregar(room);
+                    roomRepo.modificar(room);
                     System.out.println("La nueva habitacion se ha agregado  correctamente");
                 }
                 else {
@@ -55,7 +57,7 @@ public class GestionRoom {
             System.out.println("¿Desea agregar otra habitacion? s/n");
             seguir = sc.next();
         }
-        sc.close();
+
     }
 
     public void modificar(Scanner scanner) {
@@ -77,6 +79,7 @@ public class GestionRoom {
                 if (categoria == 3)
                     room.setStatus(RoomStatus.OCUPADO);
                 System.out.println("La habitacion se modifico correctamente");
+                roomRepo.modificar(room);
             }
             System.out.println("¿Desea modificar otra Habitacion? s/n");
             seguir = scanner.next();

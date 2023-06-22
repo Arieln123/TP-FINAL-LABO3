@@ -1,5 +1,29 @@
 [ {
   "id" : 1,
+  "type" : null,
+  "status" : "OCUPADO",
+  "diaInicial" : null,
+  "diaFinal" : null
+}, {
+  "id" : 2,
+  "type" : null,
+  "status" : "NO_DISPONIBLE",
+  "diaInicial" : null,
+  "diaFinal" : null
+}, {
+  "id" : 3,
+  "type" : "DOBLE",
+  "status" : "DISPONIBLE",
+  "diaInicial" : null,
+  "diaFinal" : null
+}, {
+  "id" : 4,
+  "type" : "SUITE",
+  "status" : "DISPONIBLE",
+  "diaInicial" : null,
+  "diaFinal" : null
+}, {
+  "id" : 5,
   "type" : "SIMPLE",
   "status" : "DISPONIBLE",
   "diaInicial" : null,

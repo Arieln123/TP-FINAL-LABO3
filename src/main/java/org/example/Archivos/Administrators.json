@@ -38,4 +38,12 @@
   "country" : "1111",
   "dni" : "1000",
   "status" : "ACTIVE"
+}, {
+  "name" : "Lucho",
+  "lastName" : "LUCHIN",
+  "id" : 6,
+  "address" : "CASA",
+  "country" : "Arg",
+  "dni" : "123123123",
+  "status" : "ACTIVE"
 } ]

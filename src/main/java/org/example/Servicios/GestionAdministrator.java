@@ -170,20 +170,20 @@ public class GestionAdministrator  {
 
 
     public void deleteAdministrator(Scanner scanner) {
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Administrator admin = new Administrator();
         String seguir = "s";
 
         while (seguir.equalsIgnoreCase("s")) {
 
-            System.out.println("Ingrese el numero de DNI del administrador a  "+RED+"eliminar"+RESET);
+            System.out.println("Ingrese el numero de DNI del administrador a  " + RED + "eliminar" + RESET);
             admin.setDni(sc.next());
             if (!adminRepo.existe(admin)) {
-                System.out.println(RED+"Error"+RESET+" al eliminar, el numero de DNI no pertenece a ningun cliente");
+                System.out.println(RED + "Error" + RESET + " al eliminar, el numero de DNI no pertenece a ningun cliente");
             } else {
 
                 adminRepo.eliminar(admin);
-                System.out.println("El Administrador se ha eliminado"+GREEN+" correctamente"+RESET);
+                System.out.println("El Administrador se ha eliminado" + GREEN + " correctamente" + RESET);
             }
             System.out.println("¿Desea eliminar otro Administrador? s/n");
             seguir = sc.next();
@@ -191,6 +191,31 @@ public class GestionAdministrator  {
 
     }
 
+        public void deleteRecepcionist(Scanner scanner){
+            Scanner sc = new Scanner(System.in);
+            Recepcionist recep = new Recepcionist();
+            String seguir = "s";
 
+            while (seguir.equalsIgnoreCase("s")) {
+
+                System.out.println("Ingrese el numero de DNI del Recepcionista a  " + RED + "eliminar" + RESET);
+                recep.setDni(sc.next());
+                ;
+                if (!recepcionistRepo.existe(recep)) {
+                    System.out.println(RED + "Error" + RESET + " al eliminar, el numero de DNI no pertenece a ningun Recepcionista");
+                } else {
+
+                    recepcionistRepo.eliminar(recep);
+                    System.out.println("El Recepcionista se ha eliminado" + GREEN + " correctamente" + RESET);
+                }
+                System.out.println("¿Desea eliminar otro Recepcionista? s/n");
+                seguir = sc.next();
+            }
+        }
 
 }
+
+
+
+
+

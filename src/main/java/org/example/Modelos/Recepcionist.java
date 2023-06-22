@@ -98,18 +98,9 @@ public class Recepcionist extends User {
 
     //Equals y hashcode
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Recepcionist that)) return false;
-        if (!super.equals(o)) return false;
-        return getId().equals(that.getId()) && getName().equals(that.getName()) && getLastName().equals(that.getLastName()) && getAddress().equals(that.getAddress()) && getCountry().equals(that.getCountry()) && getStatus() == that.getStatus() && getDni().equals(that.getDni());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getId());
-    }
+
+
 
     //endregion
 

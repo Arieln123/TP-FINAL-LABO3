@@ -14,4 +14,12 @@
   "country" : "Arg",
   "dni" : "444444444",
   "status" : "ACTIVE"
+}, {
+  "name" : "Tomas",
+  "lastName" : "Doming",
+  "id" : 3,
+  "address" : "Casa",
+  "country" : "Arg",
+  "dni" : "123123123",
+  "status" : "ACTIVE"
 } ]

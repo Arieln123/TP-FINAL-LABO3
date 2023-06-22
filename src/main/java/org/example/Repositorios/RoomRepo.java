@@ -3,6 +3,7 @@ package org.example.Repositorios;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import org.example.Modelos.Administrator;
 import org.example.Modelos.Room;
 import  org.example.Repositorios.IRepository;
 
@@ -84,7 +85,14 @@ public class RoomRepo implements IRepository<Room> {
     }
 
     @Override
-    public Room info(Room objeto) {
+    public Room info(Room objeto){
+        cargar();
+
+        for (Room c : this.rooms){
+            if(c.equals(objeto.getId())){
+                return c;
+            }
+        }
         return null;
     }
 
