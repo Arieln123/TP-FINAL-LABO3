@@ -98,8 +98,16 @@ public class RecepcionRepo implements IRepository<Recepcionist> {
     }
 
     @Override
-    public Recepcionist info(Recepcionist objeto) {
+    public Recepcionist info(Recepcionist objeto){
+        cargar();
+
+        for (Recepcionist c : this.recepcionists){
+
+            if(c.equals(objeto)){
+
+                return c;
+            }
+        }
         return null;
     }
-
 }
