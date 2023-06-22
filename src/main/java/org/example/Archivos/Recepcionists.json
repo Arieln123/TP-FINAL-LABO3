@@ -1,6 +1,57 @@
-{
-  "name": "Archivos",
-  "version": "1.0.0",
-  "dependencies": {
-  }
-}
+[ {
+  "name" : "Ariel",
+  "lastName" : "Nicosia",
+  "id" : 1,
+  "address" : "Calle_falsa_123",
+  "country" : null,
+  "dni" : "35620677",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Sewbastian",
+  "lastName" : "jimenez",
+  "id" : 2,
+  "address" : "Esperanto_2533",
+  "country" : null,
+  "dni" : "38953857",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Pinky",
+  "lastName" : "Fernandez",
+  "id" : 3,
+  "address" : "Jara_2536",
+  "country" : null,
+  "dni" : "25869745",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Lucas",
+  "lastName" : "MacGregor",
+  "id" : 4,
+  "address" : "Juan_b_Justo_123",
+  "country" : null,
+  "dni" : "28789456",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Niko",
+  "lastName" : "Berko",
+  "id" : 5,
+  "address" : "Valencia_456",
+  "country" : null,
+  "dni" : "14789562",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Tomi",
+  "lastName" : "Allende",
+  "id" : 6,
+  "address" : "Salta_456",
+  "country" : null,
+  "dni" : "14789562",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Alan",
+  "lastName" : "Andrada",
+  "id" : 7,
+  "address" : "Polonia_4563",
+  "country" : null,
+  "dni" : "25123456",
+  "status" : "ACTIVE"
+} ]

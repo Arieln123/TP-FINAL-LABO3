@@ -12,7 +12,7 @@ public interface IRepository <T>{
     void modificar(T objeto);
 
     boolean existe(T objeto);
-    T info(T objeto);
+
 
 
 }

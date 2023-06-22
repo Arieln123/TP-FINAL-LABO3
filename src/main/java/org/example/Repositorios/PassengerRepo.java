@@ -84,15 +84,4 @@ public class PassengerRepo implements IRepository<Passenger>{
         }
     }
 
-    @Override
-    public Passenger info(Passenger objeto) {
-        cargar();
-
-        for (Passenger c : this.passengers){
-            if(c.equals(objeto)){
-                return c;
-            }
-        }
-        return null;
-    }
 }

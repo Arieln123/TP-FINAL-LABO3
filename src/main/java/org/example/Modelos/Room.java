@@ -9,7 +9,6 @@ public class Room {
     int id;
     Type type;
     RoomStatus status;
-
     Date diaInicial;
     Date diaFinal;
 
@@ -84,8 +83,6 @@ public class Room {
 
 
     //toSting
-
-    @Override
 
     @Override
     public String toString() {

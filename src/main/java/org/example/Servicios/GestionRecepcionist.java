@@ -1,16 +1,18 @@
 package org.example.Servicios;
 
 
-import org.example.Modelos.Recepcionist;
-import org.example.Modelos.Status;
+import org.example.Modelos.*;
 import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
 import org.example.Repositorios.RecepcionRepo;
-import org.example.Modelos.Passenger;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import  java.util.Scanner;
+
+import org.example.Repositorios.RoomRepo;
+import  org.example.Servicios.GestionPassenger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,21 +29,10 @@ import java.util.GregorianCalendar;
 
 
 
-
-
-
-        Date fecha2 = formato.parse(fechaF2);
-
-        if(fecha1 >= fecha2){
-        System.out.println( "Fecha 1 es mayor o igual a fecha2" );
-        }else{
-        System.out.println( "Fecha2 es menor que fecha1");
-        }
-
-
-public class GestionRecepcionist{
+public class GestionRecepcionist implements Reservation{
     IRepository<Recepcionist>  recepcionistRepo= new RecepcionRepo();
     IRepository<Passenger> passRepo=new PassengerRepo();
+    IRepository<Room> roomRepo=new RoomRepo();
 
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
@@ -63,111 +54,46 @@ public class GestionRecepcionist{
         }
     }
 
-    public void addRecepcionist(ArrayList<Recepcionist> lista){
-        Recepcionist recep=new Recepcionist();
-        Scanner scanner=new Scanner();
-        String seguir = "s";
-
-        while (seguir.equalsIgnoreCase("s")) {
-
-            System.out.println("Ingrese nombre del recepcionista:");
-            recep.setName(scanner.nextLine());
-            System.out.println("Ingrese apellido del recepcionista:");
-            recep.setLastName(scanner.nextLine());
-            System.out.println("Ingrese la direccion del recepcionista: ");
-            recep.setAddress(scanner.nextLine());
-            System.out.println("Ingrese  DNI del recepcionista: ");
-            recep.setDni(scanner.nextLine());
-            System.out.println("Ingrese el pais de ");
-            recep.setCountry(scanner.nextLine());
-            recep.setStatus(Status.ACTIVE);
-            recep.setId(recepcionistRepo.listar().size()+1);
-
-            try{
-                if (passRepo.existe(recep)==false){
-                    passRepo.agregar(recep);
-                    System.out.println("El nuevo recepcionista se ha agregado correctamente");
-                }
-                else {
-                    throw new IOException("Este es un error personalizado");
-                }
-            }
-            catch (IOException e){
-                System.out.println("“El recepcionista ya existe”");
-
-            }
-
-            System.out.println("¿Desea agregar otro recepcionista? s/n");
-            seguir = scanner.next();
-        }
-        scanner.close();
-        lista.add(recep);
-    }
-    public void addPassenger(ArrayList<Passenger> lista){
-        Passenger pass=new Passenger();
-        Recepcionist recep=new Recepcionist();
-        Scanner scanner=new Scanner();
-        String seguir = "s";
-
-        while (seguir.equalsIgnoreCase("s")) {
-            recep.makeReservation(pass);
-            pass.setId(passRepo.listar().size()+1);
-
-            try{
-                if (passRepo.existe(pass)==false){
-                    passRepo.agregar(pass);
-                    System.out.println("El nuevo pasajero se ha agregado correctamente");
-                }
-                else {
-                    throw new IOException("Este es un error personalizado");
-                }
-            }
-            catch (IOException e){
-                System.out.println("“El pasajero ya existe”");
-
-            }
-
-            System.out.println("¿Desea agregar otro pasajero? s/n");
-            seguir = scanner.next();
-        }
-        scanner.close();
-        lista.add(pass);
+    public void addPassenger(){
+        GestionAdministrator admin=new GestionAdministrator();
+        admin.addPassengert();
     }
 
-    public void addRecepcionist() {
-        Scanner sc=new Scanner(System.in);
-        Recepcionist recep = new Recepcionist();
-        String seguir = "s";
-
-        while (seguir.equalsIgnoreCase("s")) {
-            System.out.println("Ingrese el nombre");
-            recep.setName(sc.next());
-            System.out.println("Ingrese el Apellido");
-            recep.setLastName(sc.next());
-            System.out.println("Ingrese  Direccion");
-            recep.setAddress(sc.next());
-            System.out.println("Ingrese  Dni");
-            recep.setDni(sc.next());
-            recep.setId(recepcionistRepo.listar().size()+1);
-            recep.setStatus(Status.ACTIVE);
-            try{
-                if (recepcionistRepo.existe(recep)==false){
-                    recepcionistRepo.agregar(recep);
-                    System.out.println("El nuevo Recepcionista se ha agregado"+GREEN+" correctamente"+RESET);
-                }
-                else {
-                    throw new IOException("Este es un error personalizado");
-                }
-            }
-            catch (IOException e){
-                System.out.println(GREEN+"El Recepcionista ya existe"+RESET);
-            }
-            System.out.println("¿Desea agregar otro Recepcionista? s/n");
-            seguir = sc.next();
+    @Override
+    public void makeReservation() {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        ArrayList<Room> rooms=new ArrayList<>();
+        Room room1=new Room();
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        addPassenger();
+        System.out.println("ingrese tipo de habitacion deseada\n "+" 1-  SIMPLE, 2-DOBLE, 3-SUITE");
+        int input=scanner.nextInt();
+        if (input==1)
+            room1.setType(Type.SIMPLE);
+        if (input==2)
+            room1.setType(Type.DOBLE);
+        if(input==3)
+            room1.setType(Type.SUITE);
+        System.out.println("ingrese fecha de ingreso de pasajero:");
+        try {
+            room1.setDiaInicial(formato.parse(scanner.nextLine()));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-        sc.close();
+        System.out.println("ingrese fecha de egreso de pasajero:");
+        try {
+            room1.setDiaFinal(formato.parse(scanner.nextLine()));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        for(int i=0;i<rooms.size();i++){
+            //aca tengo que comparar status tipo y fechas
+            if(rooms.get(i).getStatus().equals(RoomStatus.DISPONIBLE) && (rooms.get(i).getType().equals(room1.getType()) && rooms.get(i).getDiaFinal().after(room1.getDiaInicial()))) {
+                System.out.println("Se asigno la habitacion" + i);
+            }
+        }
     }
-
 
 
 }

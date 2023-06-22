@@ -4,6 +4,7 @@
   "id" : 1,
   "address" : "Casa123",
   "country" : "Argentina",
+  "dni" : null,
   "status" : "ACTIVE"
 }, {
   "name" : "Sebastian",
@@ -11,6 +12,7 @@
   "id" : 2,
   "address" : "SuCasa",
   "country" : "Argentina",
+  "dni" : null,
   "status" : "ACTIVE"
 }, {
   "name" : "Tomas",
@@ -18,6 +20,7 @@
   "id" : 3,
   "address" : "Casa",
   "country" : "Argentina",
+  "dni" : null,
   "status" : "ACTIVE"
 }, {
   "name" : "Juan",
@@ -25,6 +28,7 @@
   "id" : 4,
   "address" : "Casa",
   "country" : "Arg",
+  "dni" : null,
   "status" : "ACTIVE"
 }, {
   "name" : "Daniel",
@@ -32,5 +36,46 @@
   "id" : 5,
   "address" : "Sucasa",
   "country" : "Arg",
+  "dni" : null,
+  "status" : "ACTIVE"
+}, {
+  "name" : "Carlos",
+  "lastName" : "CAlvo",
+  "id" : 6,
+  "address" : "Jujuy_456",
+  "country" : "Italia",
+  "dni" : "78456123",
+  "status" : "ACTIVE"
+}, {
+  "name" : "Roberto",
+  "lastName" : "Rulo",
+  "id" : 7,
+  "address" : "Roma_456",
+  "country" : "Rumania",
+  "dni" : "45123789",
+  "status" : "ACTIVE"
+}, {
+  "name" : "oscar",
+  "lastName" : "valles",
+  "id" : 8,
+  "address" : "Esperanto_123",
+  "country" : "Rusia",
+  "dni" : "25789456",
+  "status" : "ACTIVE"
+}, {
+  "name" : "asdf",
+  "lastName" : "qwer",
+  "id" : 9,
+  "address" : "asdgfh",
+  "country" : "asdgfhg",
+  "dni" : "25789741",
+  "status" : "ACTIVE"
+}, {
+  "name" : "qwertyyu",
+  "lastName" : "asdfgh",
+  "id" : 10,
+  "address" : "asdfasf_123",
+  "country" : "asdagsdgasdf",
+  "dni" : "98765431",
   "status" : "ACTIVE"
 } ]

@@ -2,10 +2,12 @@ package org.example.Servicios;
 
 import org.example.Modelos.Administrator;
 import org.example.Modelos.Passenger;
+import org.example.Modelos.Recepcionist;
 import org.example.Modelos.Status;
 import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
+import org.example.Repositorios.RecepcionRepo;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,6 +16,7 @@ public class GestionAdministrator  {
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
     public static final String RESET = "\u001B[0m";
+    IRepository<Recepcionist> recepcionistRepo = new RecepcionRepo();
 
     IRepository<Administrator> adminRepo = new AdministratorRepo();
     IRepository<Passenger> passengerRepo = new PassengerRepo();
@@ -71,9 +74,9 @@ public class GestionAdministrator  {
 
             }
 
-
             System.out.println("¿Desea agregar otro Admin? s/n");
             seguir = sc.next();
+            sc.close();
         }
         sc.close();
     }
@@ -131,7 +134,39 @@ public class GestionAdministrator  {
 
     }
 
+    public void addRecepcionist() {
+        Scanner sc=new Scanner(System.in);
+        Recepcionist recep = new Recepcionist();
+        String seguir = "s";
 
+        while (seguir.equalsIgnoreCase("s")) {
+            System.out.println("Ingrese el nombre");
+            recep.setName(sc.next());
+            System.out.println("Ingrese el Apellido");
+            recep.setLastName(sc.next());
+            System.out.println("Ingrese  Direccion");
+            recep.setAddress(sc.next());
+            System.out.println("Ingrese  Dni");
+            recep.setDni(sc.next());
+            recep.setId(recepcionistRepo.listar().size()+1);
+            recep.setStatus(Status.ACTIVE);
+            try{
+                if (recepcionistRepo.existe(recep)==false){
+                    recepcionistRepo.agregar(recep);
+                    System.out.println("El nuevo Recepcionista se ha agregado"+GREEN+" correctamente"+RESET);
+                }
+                else {
+                    throw new IOException("Este es un error personalizado");
+                }
+            }
+            catch (IOException e){
+                System.out.println(GREEN+"El Recepcionista ya existe"+RESET);
+            }
+            System.out.println("¿Desea agregar otro Recepcionista? s/n");
+            seguir = sc.next();
+        }
+        sc.close();
+    }
 
 
     public void deleteAdministrator() {

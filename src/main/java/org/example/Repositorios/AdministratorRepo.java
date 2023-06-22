@@ -85,15 +85,4 @@ public class AdministratorRepo implements IRepository<Administrator> {
         }
     }
 
-    @Override
-    public Administrator info(Administrator objeto) {
-        cargar();
-
-        for (Administrator c : this.administrators){
-            if(c.equals(objeto)){
-                return c;
-            }
-        }
-        return null;
-    }
 }

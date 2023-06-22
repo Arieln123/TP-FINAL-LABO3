@@ -2,10 +2,15 @@ package org.example;
 
 import org.example.Modelos.Administrator;
 import org.example.Modelos.Passenger;
+import org.example.Modelos.Room;
 import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
+import org.example.Repositorios.PassengerRepo;
+import org.example.Repositorios.RoomRepo;
 import org.example.Servicios.GestionAdministrator;
 import  org.example.Modelos.Recepcionist;
+import org.example.Servicios.GestionRecepcionist;
+import org.example.Servicios.GestionRoom;
 
 
 import java.util.Scanner;
@@ -26,22 +31,20 @@ public class Menu {
     }
 
     public void startMenu() {
+
         System.out.println("Bienvenido al sistema de reservas de HOTEL TRESVAGOS");
         System.out.println("Que clase de usuario eres?:");
         System.out.println(BLUE+"    1- Administrador"+RESET);
         System.out.println(GREEN+"    2- Recepcionista"+RESET);
         System.out.println(YELLOW+"    3- Pasajero"+RESET);
-        switch (answerInt()) {
+        switch (answerInt(2)) {
             case 1:
                 administratorMenu();
                 break;
             case 2:
-               // recepcionistMenu();
+                recepcionistMenu();
                 break;
-            case 3:
-               // passengerMenu(;
-                break;
-            default:///
+            default:
                 System.out.println("\n\n\n\n\n");
                 startMenu();
                 break;
@@ -54,8 +57,7 @@ public class Menu {
         System.out.println("    1- Listar Administradores");
         System.out.println("    2- Crear usuarios");
         System.out.println("    3- Eliminar usuarios");
-        System.out.println("    4- Reiniciar sistema");
-        System.out.println("    5-Volver al menu anterior");
+        System.out.println("    4-Volver al menu anterior");
         GestionAdministrator admin = new GestionAdministrator();
 
         switch (answerInt(4)) {
@@ -63,7 +65,6 @@ public class Menu {
                 System.out.println(BLUE + "La lista de administradores activos:" + RESET);
                 admin.listAdministrator();
                 administratorMenu();
-
                 break;
             case 2:
                 System.out.println("que usuario desea" + GREEN + " crear" + RESET);
@@ -73,11 +74,13 @@ public class Menu {
                 switch (answerInt(3)) {
                     case 1:
                         admin.addAdministrator();
-                        admin.listAdministrator();
-
-                        break;
+                        administratorMenu();
+                        return;
                     case 2:
-                        break;
+                        admin.addRecepcionist();
+                        System.out.println("asd");
+                        administratorMenu();
+                        return;
                     case 3:
                         System.out.println("asd");
                         admin.addPassengert();
@@ -99,12 +102,7 @@ public class Menu {
 
                         break;
                     case 3:
-
-
                         administratorMenu();
-                        break;
-
-                    case 4:
                         break;
                     case 5:
                         startMenu();
@@ -114,58 +112,69 @@ public class Menu {
                         administratorMenu();
                         break;
                 }
+                break;
+            case 4:
+                System.out.println("\n\n\n");
+                administratorMenu();
+                break;
         }
     }
-                public static int answerInt(int lenght) {
+               public int answerInt(int lenght) {
                 Scanner sc = new Scanner(System.in);
                 int rta = 0;
                 do {
                     System.out.print("Respuesta: ");
                     rta = sc.nextInt();
                 } while (rta < 0 || rta > lenght);
-                return rta;
+                int res=rta;
+                sc.close();
+                return res;
             }
-            public static int answerInt() {
+           public int answerInt() {
                 Scanner sc = new Scanner(System.in);
                 System.out.print("Respuesta: ");
                 return sc.nextInt();
             }
 
 
-    public void recepcionistMenu(Data data) {
+    public void recepcionistMenu() {
+
+        Recepcionist recepcionist = new Recepcionist();
+        GestionRecepcionist gest=new GestionRecepcionist();
+        IRepository<Room> roomRepo=new RoomRepo();
+        IRepository<Passenger> passRepo=new PassengerRepo();
+        Scanner sc=new Scanner(System.in);
         System.out.println("Bienvenido RECEPCIONISTA, ingrese su DNI");
-        Recepcionist recepcionist = data.getRecepcionists().get(answerInt());
+        recepcionist.setDni(sc.nextLine());
+
         if (recepcionist == null) {
             System.out.println("ERROR");
-            recepcionistMenu(data);
+            recepcionistMenu();
         } else {
             System.out.println("Hola " + recepcionist.getName() + "!");
             System.out.println("Que deseas hacer?");
-            System.out.println("    1- Check-In");
-            System.out.println("    2- Check-Out");
-            System.out.println("    3- Hacer reservas");
-            System.out.println("    4- Ver estado de habitaciones");
-            System.out.println("    5- Ver pasajeros");
-            switch (answerInt()) {
+            System.out.println("    1- Hacer reservas");
+            System.out.println("    2- Ver estado de habitaciones");
+            System.out.println("    3- Ver pasajeros");
+            switch (answerInt(3)) {
                 case 1:
+                     gest.makeReservation();
                     break;
                 case 2:
+                    System.out.println(roomRepo.listar());
                     break;
                 case 3:
-                    break;
-                case 4:
-                    recepcionist.roomStatus(data);
-                    break;
-                case 5:
+                    System.out.println(passRepo.listar());
                     break;
                 default:
                     System.out.println("\n\n\n");
-                    recepcionistMenu(data);
+                    recepcionistMenu();
                     break;
             }
         }
     }
 
+/*
     public void addUser(Data data) {
         int typeUser = 0;
         String name = null;
@@ -190,31 +199,6 @@ public class Menu {
             Passenger passenger = new Passenger(id, name, lastName, address, country);
             data.addPassenger(passenger);
         }
-    }
-
-    public void passengerMenu(Data data) {
-        System.out.println("Bienvenido PASAJERO: Ingrese su numero de DNI para ingresar: ");
-        Passenger passenger = data.getPassengers().get(answerInt());
-        if (passenger == null) {
-            System.out.println("Error");
-            passengerMenu(data);
-        } else {
-            System.out.println("    1- Realizar reserva");
-            System.out.println("    2- Servicio a la habitación");
-            switch (answerInt(2)) {
-                case 1:
-                    passenger.makeReservation();
-                    break;
-                case 2:
-                    passenger.consume();
-                    break;
-                default:
-                    System.out.println("\n\n\n");
-                    passengerMenu(data);
-                    break;
-            }
-        }/*
     }*/
 
-
-    }
+}

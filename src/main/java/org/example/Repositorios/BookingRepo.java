@@ -84,15 +84,4 @@ public class BookingRepo implements IRepository<Booking>{
         }
     }
 
-    @Override
-    public Booking info(Booking objeto) {
-        cargar();
-
-        for (Booking c : this.bookings){
-            if(c.equals(objeto)){
-                return c;
-            }
-        }
-        return null;
-    }
 }

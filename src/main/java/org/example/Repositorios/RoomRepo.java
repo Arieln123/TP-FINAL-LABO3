@@ -1,9 +1,11 @@
 package org.example.Repositorios;
 
-import org.example.Models.Room;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import org.example.Modelos.Room;
+import  org.example.Repositorios.IRepository;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.Arrays;
 
 
 public class RoomRepo implements IRepository<Room> {
-    private final File pathJson = new File("C:\\Users\\Usuario\\Desktop\\SegundoParcialJimenez\\src\\main\\java\\org\\example\\Archivos\\productos.json");
+    private final File pathJson = new File("C:\\Users\\Usuario\\Desktop\\Proyecto\\TP-FINAL-LABO3\\src\\main\\java\\org\\example\\Archivos\\Rooms.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private ArrayList<Room> rooms;
 
@@ -72,12 +74,13 @@ public class RoomRepo implements IRepository<Room> {
     }
 
     @Override
-    public boolean existe(Producto producto) {
+    public boolean existe(Room room) {
         cargar();
-        if (this.productos.contains(producto)) {
+        if (this.rooms.contains(room)) {
             return true;
         } else {
             return false;
         }
     }
+
 }
