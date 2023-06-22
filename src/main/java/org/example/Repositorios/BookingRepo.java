@@ -84,4 +84,9 @@ public class BookingRepo implements IRepository<Booking>{
         }
     }
 
+    @Override
+    public Booking info(Booking objeto) {
+        return null;
+    }
+
 }

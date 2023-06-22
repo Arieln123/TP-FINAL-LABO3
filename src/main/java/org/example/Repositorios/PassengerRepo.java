@@ -84,4 +84,9 @@ public class PassengerRepo implements IRepository<Passenger>{
         }
     }
 
+    @Override
+    public Passenger info(Passenger objeto) {
+        return null;
+    }
+
 }

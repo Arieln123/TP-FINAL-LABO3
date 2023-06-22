@@ -6,27 +6,14 @@ import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
 import org.example.Repositorios.RecepcionRepo;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import  java.util.Scanner;
 
 import org.example.Repositorios.RoomRepo;
-import  org.example.Servicios.GestionPassenger;
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-
 
 
 public class GestionRecepcionist implements Reservation{
@@ -54,19 +41,19 @@ public class GestionRecepcionist implements Reservation{
         }
     }
 
-    public void addPassenger(){
+    public void addPassenger(Scanner scanner){
         GestionAdministrator admin=new GestionAdministrator();
-        admin.addPassengert();
+        admin.addPassengert(scanner);
     }
 
     @Override
-    public void makeReservation() {
+    public void makeReservation(Scanner scanner) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         ArrayList<Room> rooms=new ArrayList<>();
         Room room1=new Room();
-        Scanner scanner;
+
         scanner = new Scanner(System.in);
-        addPassenger();
+        addPassenger(scanner);
         System.out.println("ingrese tipo de habitacion deseada\n "+" 1-  SIMPLE, 2-DOBLE, 3-SUITE");
         int input=scanner.nextInt();
         if (input==1)
@@ -94,6 +81,7 @@ public class GestionRecepcionist implements Reservation{
             }
         }
     }
+
 
 
 }

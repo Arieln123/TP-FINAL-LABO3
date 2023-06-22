@@ -36,7 +36,7 @@ public class GestionAdministrator  {
         }
     }
 
-    public void addAdministrator() {
+    public void addAdministrator(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
         Administrator admin = new Administrator();
         String seguir = "s";
@@ -76,12 +76,12 @@ public class GestionAdministrator  {
 
             System.out.println("¿Desea agregar otro Admin? s/n");
             seguir = sc.next();
-            sc.close();
+
         }
-        sc.close();
+
     }
 
-    public void addPassengert(){
+    public void addPassengert(Scanner scanner){
 
         Scanner sc=new Scanner(System.in);
         Passenger passenger = new Passenger();
@@ -125,7 +125,7 @@ public class GestionAdministrator  {
             System.out.println("¿Desea agregar otro Admin? s/n");
             seguir = sc.next();
         }
-        sc.close();
+
 
 
 
@@ -134,7 +134,7 @@ public class GestionAdministrator  {
 
     }
 
-    public void addRecepcionist() {
+    public void addRecepcionist(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
         Recepcionist recep = new Recepcionist();
         String seguir = "s";
@@ -165,30 +165,30 @@ public class GestionAdministrator  {
             System.out.println("¿Desea agregar otro Recepcionista? s/n");
             seguir = sc.next();
         }
-        sc.close();
+
     }
 
 
-    public void deleteAdministrator() {
+    public void deleteAdministrator(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
         Administrator admin = new Administrator();
         String seguir = "s";
 
         while (seguir.equalsIgnoreCase("s")) {
 
-            System.out.println("Ingrese el numero de ID del administrador a  "+RED+"eliminar"+RESET);
-            admin.setId(sc.nextInt());
-
+            System.out.println("Ingrese el numero de DNI del administrador a  "+RED+"eliminar"+RESET);
+            admin.setDni(sc.next());
             if (!adminRepo.existe(admin)) {
-                System.out.println(RED+"Error"+RESET+" al eliminar, el numero de ID no pertenece a ningun cliente");
+                System.out.println(RED+"Error"+RESET+" al eliminar, el numero de DNI no pertenece a ningun cliente");
             } else {
+
                 adminRepo.eliminar(admin);
                 System.out.println("El Administrador se ha eliminado"+GREEN+" correctamente"+RESET);
             }
             System.out.println("¿Desea eliminar otro Administrador? s/n");
             seguir = sc.next();
         }
-        sc.close();
+
     }
 
 

@@ -5,16 +5,13 @@ import org.example.Modelos.*;
 import org.example.Repositorios.IRepository;
 import org.example.Repositorios.RoomRepo;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import  java.util.Scanner;
 
 public class GestionRoom {
     IRepository<Room> roomRepo=new RoomRepo();
 
-    public void addRoom() {
+    public void addRoom(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
         Room room = new Room();
         String seguir = "s";

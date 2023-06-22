@@ -84,8 +84,9 @@ public abstract class User {
     @Override
     public String toString() {
         return "Id: " + this.getId() + ", Nombre: " + this.getName() + " " + this.getLastName() + ", Direccion: " +
-                this.getAddress() + ", Pais: " + this.getCountry();
+                this.getAddress() + ", Pais: " + this.getCountry()+ ", DNI:"+this.getDni();
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -13,6 +13,8 @@ public class Administrator extends User implements Serializable {
     }
 
 
-
-
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }

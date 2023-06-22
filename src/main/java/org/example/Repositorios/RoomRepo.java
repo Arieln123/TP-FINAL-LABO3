@@ -83,4 +83,9 @@ public class RoomRepo implements IRepository<Room> {
         }
     }
 
+    @Override
+    public Room info(Room objeto) {
+        return null;
+    }
+
 }

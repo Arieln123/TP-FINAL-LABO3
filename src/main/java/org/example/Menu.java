@@ -28,119 +28,84 @@ public class Menu {
     public Menu() {
     }
 
-    public void startMenu() {
+    public void startMenu(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
-        System.out.println("Bienvenido al sistema de reservas de HOTEL TRESVAGOS");
-        System.out.println("Que clase de usuario eres?:");
-        System.out.println(BLUE+"    1- Administrador"+RESET);
-        System.out.println(GREEN+"    2- Recepcionista"+RESET);
-        System.out.println(YELLOW+"    3- Pasajero"+RESET);
-        System.out.print("Respuesta: ");
-        String rta = sc.next();
-        switch (rta) {
-            case "1":
-                administratorMenu();
-                break;
-            case "2":
-                recepcionistMenu();
-                break;
-            default:
-                System.out.println("\n\n\n\n\n");
-                startMenu();
-                break;
+        String seguir = "s";
+        int opcion = 0;
+
+        while (seguir.equalsIgnoreCase("s")) {
+
+            System.out.println("Bienvenido al sistema de reservas de HOTEL TRESVAGOS");
+            System.out.println("Que clase de usuario eres?:");
+            System.out.println(BLUE+"    1- Administrador"+RESET);
+            System.out.println(GREEN+"    2- Recepcionista"+RESET);
+
+            try {
+                opcion = scanner.nextInt();
+            } catch (RuntimeException e) {
+                System.out.println("Caracter invalido, debe ingresar un numero");
+                scanner.nextLine();
+            }
+
+            switch (opcion) {
+                case 1:
+                    administratorMenu(scanner);
+                    break;
+                case 2:
+                    recepcionistMenu(scanner);
+                    break;
+                case 3:
+                    seguir = "n";
+                    break;
+                default:
+                    System.out.println("el numero no es valido");
+                    break;
+            }
+
+            if (!seguir.equalsIgnoreCase("n")) {
+                System.out.println("¿Desea volver al menu? s/n");
+                seguir = scanner.next();
+            }
         }
-    sc.close();
     }
 
-    public void administratorMenu() {
-        System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR"+RESET+", que desea hacer?");
-        System.out.println("    1- Listar Administradores");
-        System.out.println("    2- Crear usuarios o Habitacion");
-        System.out.println("    3- Eliminar usuarios");
-        System.out.println("    4-Volver al menu anterior");
-        GestionAdministrator admin = new GestionAdministrator();
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Respuesta: ");
-        String rta = sc.next();
-        switch (rta) {
-            case "1":
-                System.out.println(BLUE + "La lista de administradores activos:" + RESET);
-                admin.listAdministrator();
-                administratorMenu();
-                break;
-            case "2":
-                System.out.println("que usuario desea" + GREEN + " crear" + RESET);
-                System.out.println("1- Administrador");
-                System.out.println("2- Recepcionista");
-                System.out.println("3- Pasajero");
-                System.out.println("4- Habitacion");
-                System.out.println("Cualquier otra tecla- Volver al menu anterior");
+    public void administratorMenu(Scanner scanner) {
+        String seguir = "s";
+        int opcion = 0;
 
-                switch (rta) {
-                    case "1":
-                        admin.addAdministrator();
-                        administratorMenu();
-                        return;
-                    case "2":
-                        admin.addRecepcionist();
-                        administratorMenu();
-                        return;
-                    case "3":
-                        admin.addPassengert();
-                        break;
-                    case "4":
-                        GestionRoom room= new GestionRoom();
-                        room.addRoom();
-                        break;
 
-                    default:
-                        System.out.println("\n\n\n");
-                        administratorMenu();
-                        break;
-                }
-                break;
-            case "3":
-                System.out.println("que usuario desea" + RED + "eliminar" + RESET);
-                System.out.println("1- Administrador");
-                System.out.println("2- Recepcionista");
-                System.out.println("3- Pasajero");
-                switch (rta) {
-                    case "1":
-                        admin.deleteAdministrator();
-                        administratorMenu();
+        while (seguir.equalsIgnoreCase("s")) {
+            System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", que desea hacer?");
+            System.out.println("    1- Listar Administradores");
+            System.out.println("    2- Crear usuarios o Habitacion");
+            System.out.println("    3- Eliminar usuarios");
+            System.out.println("    4-Volver al menu anterior");
+            Scanner scanner1 = scanner;
+            GestionAdministrator admin = new GestionAdministrator();
 
-                        break;
-                    case "2":
+            try {
+                opcion = scanner1.nextInt();
+            } catch (RuntimeException e) {
+                System.out.println("Caracter invalido, debe ingresar un numero");
+                scanner1.nextLine();
+            }
+            switch (opcion) {
+                case 1:
+                    admin.listAdministrator();
 
+                    break;
+                case 2:
+                        altaMenuAdministrador(scanner);
                         break;
-                    case "3":
-                        administratorMenu();
-                        break;
-                    case "4":
-                        System.out.println("\n\n\n");
-                        administratorMenu();
-                        break;
-                    default:
-                        System.out.println("\n\n\n");
-                        administratorMenu();
-                        break;
-                }
-                break;
-            case "4":
-                System.out.println("\n\n\n");
-                startMenu();
-                break;
-            default:
-                System.out.println("\n\n\n");
-                administratorMenu();
-                break;
+                case 3:
+                    bajaMenuAdministrador(scanner);
+                       break;
+
+            }
         }
-        sc.close();
     }
 
-
-
-    public void recepcionistMenu() {
+    public void recepcionistMenu(Scanner scanner) {
 
         Recepcionist recepcionist = new Recepcionist();
         GestionRecepcionist gest=new GestionRecepcionist();
@@ -152,7 +117,7 @@ public class Menu {
 
         if (recepcionist == null) {
             System.out.println("ERROR");
-            recepcionistMenu();
+            recepcionistMenu(scanner);
         } else {
             System.out.println("Hola " + recepcionist.getName() + "!");
             System.out.println("Que deseas hacer?");
@@ -164,7 +129,7 @@ public class Menu {
             String rta = sc.next();
             switch (rta) {
                 case "1":
-                     gest.makeReservation();
+                     gest.makeReservation(scanner);
                     break;
                 case "2":
                     System.out.println(roomRepo.listar());
@@ -174,38 +139,117 @@ public class Menu {
                     break;
                 default:
                     System.out.println("\n\n\n");
-                    recepcionistMenu();
+                    recepcionistMenu(scanner);
                     break;
             }
         }
         sc.close();
     }
 
-/*
-    public void addUser(Data data) {
-        int typeUser = 0;
-        String name = null;
-        String lastName = null;
-        Integer id = null;
-        String address = null;
-        String country = null;
-        System.out.println("Ingrese tipo de Usuario: 1:recepcionista / 2:pasajero");
-        typeUser = answerInt();
-        System.out.println("Ingrese su DNI");
-        id = answerInt();
-        System.out.println("Apellido: ");
-        lastName = DataManager.answerString();
-        System.out.println("Dirección: ");
-        address = DataManager.answerString();
-        System.out.println("Nacionalidad: ");
-        country = DataManager.answerString();
-        if (typeUser == 1) {
-            Recepcionist recepcionist = new Recepcionist(id, name, lastName, address, country);
-            data.addRecepcionist(recepcionist);
-        } else {
-            Passenger passenger = new Passenger(id, name, lastName, address, country);
-            data.addPassenger(passenger);
-        }
-    }*/
+    public  void altaMenuAdministrador(Scanner scanner){
 
+        Scanner sc=new Scanner(System.in);
+        String seguir = "s";
+        int opcion = 0;
+        GestionAdministrator admin = new GestionAdministrator();
+
+        while (seguir.equalsIgnoreCase("s")) {
+
+            System.out.println("que usuario desea" + GREEN + " crear" + RESET);
+            System.out.println("1- Administrador");
+            System.out.println("2- Recepcionista");
+            System.out.println("3- Pasajero");
+            System.out.println("4- Habitacion");
+            System.out.println("Cualquier otra tecla- Volver al menu anterior");
+
+            try {
+                opcion = scanner.nextInt();
+            } catch (RuntimeException e) {
+                System.out.println("Caracter invalido, debe ingresar un numero");
+                scanner.nextLine();
+            }
+
+            switch (opcion) {
+                case 1:
+                    admin.addAdministrator(scanner);
+                    break;
+                case 2:
+                    admin.addRecepcionist(scanner);
+                    break;
+                case 3:
+                    admin.addPassengert(scanner);
+                    break;
+                case 4:
+                    GestionRoom room = new GestionRoom();
+                    room.addRoom(scanner);
+                    break;
+                case  5:
+                    seguir="n";
+                    break;
+                default:
+                    System.out.println("el numero no es valido");
+                    break;
+            }
+
+            if (!seguir.equalsIgnoreCase("n")) {
+                System.out.println("¿Desea volver al menu? s/n");
+                seguir = scanner.next();
+            }
+        }
+    }
+
+
+    public  void bajaMenuAdministrador(Scanner scanner){
+
+        Scanner sc=new Scanner(System.in);
+        String seguir = "s";
+        int opcion = 0;
+        GestionAdministrator admin = new GestionAdministrator();
+
+        while (seguir.equalsIgnoreCase("s")) {
+
+            System.out.println("que usuario desea" + RED + " eliminar" + RESET);
+            System.out.println("1- Administrador");
+            System.out.println("2- Recepcionista");
+            System.out.println("3- Pasajero");
+            System.out.println("4- Habitacion");
+            System.out.println("Cualquier otra tecla- Volver al menu anterior");
+
+            try {
+                opcion = scanner.nextInt();
+            } catch (RuntimeException e) {
+                System.out.println("Caracter invalido, debe ingresar un numero");
+                scanner.nextLine();
+            }
+
+            switch (opcion) {
+                case 1:
+                        admin.deleteAdministrator(scanner);
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case  5:
+                    seguir="n";
+                    break;
+                default:
+                    System.out.println("el numero no es valido");
+                    break;
+            }
+
+            if (!seguir.equalsIgnoreCase("n")) {
+                System.out.println("¿Desea volver al menu? s/n");
+                seguir = scanner.next();
+            }
+        }
+    }
 }
+
+
+

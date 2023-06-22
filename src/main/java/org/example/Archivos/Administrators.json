@@ -1,81 +1,33 @@
 [ {
   "name" : "Ariel",
-  "lastName" : "Nicosia",
+  "lastName" : "NIcosia",
   "id" : 1,
   "address" : "Casa123",
-  "country" : "Argentina",
-  "dni" : null,
+  "country" : "Arg",
+  "dni" : "35620677",
   "status" : "ACTIVE"
 }, {
   "name" : "Sebastian",
   "lastName" : "Jimenez",
   "id" : 2,
-  "address" : "SuCasa",
-  "country" : "Argentina",
-  "dni" : null,
+  "address" : "Casa112",
+  "country" : "Arg",
+  "dni" : "12345678",
   "status" : "ACTIVE"
 }, {
   "name" : "Tomas",
-  "lastName" : "Nuñes",
-  "id" : 3,
-  "address" : "Casa",
-  "country" : "Argentina",
-  "dni" : null,
-  "status" : "ACTIVE"
-}, {
-  "name" : "Juan",
-  "lastName" : "Cruz",
-  "id" : 4,
-  "address" : "Casa",
-  "country" : "Arg",
-  "dni" : null,
-  "status" : "ACTIVE"
-}, {
-  "name" : "Daniel",
   "lastName" : "Sanchez",
-  "id" : 5,
-  "address" : "Sucasa",
+  "id" : 3,
+  "address" : "Casita",
   "country" : "Arg",
-  "dni" : null,
+  "dni" : "87654321",
   "status" : "ACTIVE"
 }, {
-  "name" : "Carlos",
-  "lastName" : "CAlvo",
-  "id" : 6,
-  "address" : "Jujuy_456",
-  "country" : "Italia",
-  "dni" : "78456123",
-  "status" : "ACTIVE"
-}, {
-  "name" : "Roberto",
-  "lastName" : "Rulo",
-  "id" : 7,
-  "address" : "Roma_456",
-  "country" : "Rumania",
-  "dni" : "45123789",
-  "status" : "ACTIVE"
-}, {
-  "name" : "oscar",
-  "lastName" : "valles",
-  "id" : 8,
-  "address" : "Esperanto_123",
-  "country" : "Rusia",
-  "dni" : "25789456",
-  "status" : "ACTIVE"
-}, {
-  "name" : "asdf",
-  "lastName" : "qwer",
-  "id" : 9,
-  "address" : "asdgfh",
-  "country" : "asdgfhg",
-  "dni" : "25789741",
-  "status" : "ACTIVE"
-}, {
-  "name" : "qwertyyu",
-  "lastName" : "asdfgh",
-  "id" : 10,
-  "address" : "asdfasf_123",
-  "country" : "asdagsdgasdf",
-  "dni" : "98765431",
+  "name" : "Damian",
+  "lastName" : "Dami",
+  "id" : 4,
+  "address" : "Casa22",
+  "country" : "Arg",
+  "dni" : "6666666666",
   "status" : "ACTIVE"
 } ]

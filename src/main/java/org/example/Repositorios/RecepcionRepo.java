@@ -89,4 +89,9 @@ public class RecepcionRepo implements IRepository<Recepcionist> {
         }
     }
 
+    @Override
+    public Recepcionist info(Recepcionist objeto) {
+        return null;
+    }
+
 }

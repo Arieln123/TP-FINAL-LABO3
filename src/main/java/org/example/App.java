@@ -9,9 +9,11 @@ public class App
     public static void main( String[] args )
     {
 
+        Scanner scanner = new Scanner(System.in);
 
         Menu menu=new Menu();
-        menu.startMenu();
+        menu.startMenu(scanner);
+        scanner.close();
 
 
     }
