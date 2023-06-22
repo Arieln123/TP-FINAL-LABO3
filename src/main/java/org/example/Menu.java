@@ -35,7 +35,7 @@ public class Menu {
 
         while (seguir.equalsIgnoreCase("s")) {
 
-            System.out.println("Bienvenido al sistema de reservas de HOTEL TRESVAGOS");
+            System.out.println("Bienvenido al sistema de reservas de HOTEL "+BLUE+"TRES"+CYAN+"VA"+RED+"GOS"+RESET);
             System.out.println("Que clase de usuario eres?:");
             System.out.println(BLUE+"    1- Administrador"+RESET);
             System.out.println(GREEN+"    2- Recepcionista"+RESET);
@@ -84,7 +84,7 @@ public class Menu {
 
             boolean verdad = repo.existe(admin);
             if (verdad == false) {
-                System.out.println("ERROR");
+                System.out.println(RED+"ERROR"+RESET);
                 administratorMenu(scanner);
             } else {
                 System.out.print(BLUE+"Bienvenido, ");
@@ -123,6 +123,7 @@ public class Menu {
     }
 
     public void recepcionistMenu(Scanner scanner) {
+        String seguir = "s";
 
         Recepcionist recepcionist = new Recepcionist();
         GestionRecepcionist gest=new GestionRecepcionist();
@@ -133,10 +134,10 @@ public class Menu {
         Scanner sc=new Scanner(System.in);
         System.out.println("Bienvenido"+GREEN+" RECEPCIONISTA"+RESET+", ingrese su DNI");
         recepcionist.setDni(sc.nextLine());
-
+        while (seguir.equalsIgnoreCase("s")) {
         boolean  verdad=repo.existe(recepcionist);
         if (verdad == false ) {
-            System.out.println("ERROR");
+            System.out.println(RED+"ERROR"+RESET);
             recepcionistMenu(scanner);
         } else {
             System.out.print(GREEN+"Bienvenido, ");
@@ -150,25 +151,36 @@ public class Menu {
             System.out.println("    3- Ver pasajeros");
 
             System.out.print("Respuesta: ");
-            String rta = sc.next();
+            int rta = sc.nextInt();
             switch (rta) {
-                case "1":
+                case 1 :
                      gest.makeReservation(scanner);
                     break;
-                case "2":
+                case 2:
+                    System.out.println(YELLOW+"LISTA DE HABITACIONES"+RESET);
+
                     gestr.listRoom();
                     break;
-                case "3":
-                    System.out.println(passRepo.listar());
+                case 3:
+                    System.out.println(YELLOW+"LISTA DE PASAJEROS"+RESET);
+
+                    GestionPassenger pass =new GestionPassenger();
+                    pass.listPassenger();
+                    break;
+                case  4:
+                    seguir="n";
                     break;
                 default:
-                    System.out.println("\n\n\n");
-                    recepcionistMenu(scanner);
+                    System.out.println("el numero no es valido");
                     break;
             }
         }
-        sc.close();
+            if (!seguir.equalsIgnoreCase("n")) {
+                System.out.println("¿Desea volver al menu? s/n");
+                seguir = scanner.next();
+            }
     }
+}
 
     public  void altaMenuAdministrador(Scanner scanner){
 

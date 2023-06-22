@@ -1,12 +1,12 @@
 [ {
   "id" : 1,
-  "type" : null,
+  "type" : "DOBLE",
   "status" : "OCUPADO",
   "diaInicial" : null,
   "diaFinal" : null
 }, {
   "id" : 2,
-  "type" : null,
+  "type" : "SUITE",
   "status" : "NO_DISPONIBLE",
   "diaInicial" : null,
   "diaFinal" : null
