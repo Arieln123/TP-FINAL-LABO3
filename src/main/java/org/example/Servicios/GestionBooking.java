@@ -4,22 +4,23 @@ import org.example.Modelos.Booking;
 import org.example.Repositorios.BookingRepo;
 import org.example.Repositorios.IRepository;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GestionBooking {
+
     IRepository<Booking> bookRepo = new BookingRepo();
+    ArrayList<Booking> listabook = bookRepo.listar();
+
 
     public GestionBooking() {
     }
 
     public void listBooking() {
 
-        BookingRepo admin=new BookingRepo();
-        List<Booking> lista =admin.listar();
-
-        for (int i=0;i<lista.size();i++){
-                System.out.println(lista.get(i));
+        for (int i=0;i<listabook.size();i++){
+                System.out.println(listabook.get(i));
         }
     }
 

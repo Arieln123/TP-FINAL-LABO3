@@ -6,6 +6,8 @@ import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
 import org.example.Repositorios.RecepcionRepo;
 
+import java.util.Date;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import  java.util.Scanner;
@@ -62,34 +64,66 @@ public class GestionRecepcionist implements Reservation{
     @Override
     public void makeReservation(Scanner scanner) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        ArrayList<Room> rooms=new ArrayList<>();
+        ArrayList<Room> rooms= new ArrayList<>();
+        rooms = roomRepo.listar();
         Room room1=new Room();
-
         scanner = new Scanner(System.in);
+        GestionBooking gestbook = new GestionBooking();
+
         addPassenger(scanner);
-        System.out.println("ingrese tipo de habitacion deseada\n "+" 1-  SIMPLE, 2-DOBLE, 3-SUITE");
+
+        System.out.println("ingrese tipo de habitacion deseada\n "+" 1-SIMPLE $50 x noche , 2-DOBLE $100 x noche , 3-SUITE $200 x noche ");
         int input=scanner.nextInt();
-        if (input==1)
-            room1.setType(Type.SIMPLE);
-        if (input==2)
-            room1.setType(Type.DOBLE);
-        if(input==3)
-            room1.setType(Type.SUITE);
-        System.out.println("ingrese fecha de ingreso de pasajero:");
+        switch (input){
+            case 1:
+                room1.setType(Type.SIMPLE);
+                break;
+            case 2:
+                room1.setType(Type.DOBLE);
+                break;
+            case 3:
+                room1.setType(Type.SUITE);
+                break;
+        }
+
+        System.out.println("ingrese fecha de ingreso de pasajero:(YYYY/MM/DD)");
         try {
-            room1.setDiaInicial(formato.parse(scanner.nextLine()));
+            String dateinc = scanner.next();
+            Date date1 = formato.parse(dateinc);
+            room1.setDiaInicial(date1);
+            //room1.setDiaInicial(formato.parse(scanner.nextLine()));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("ingrese fecha de egreso de pasajero:");
+
+        System.out.println("ingrese fecha de egreso de pasajero:(YYYY/MM/DD)");
         try {
             room1.setDiaFinal(formato.parse(scanner.nextLine()));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+
+        int dias = (int) ((room1.getDiaFinal().getTime() - room1.getDiaInicial().getTime()));
+        double fare =0.0;
+        switch (room1.getType()){
+            case SIMPLE:
+                fare = (double)(dias * 50);
+                break;
+
+            case DOBLE:
+                fare = (double)(dias * 100);
+                break;
+
+            case SUITE:
+                fare = (double)(dias * 200);
+                break;
+        }
+
+
         for(int i=0;i<rooms.size();i++){
             //aca tengo que comparar status tipo y fechas
             if(rooms.get(i).getStatus().equals(RoomStatus.DISPONIBLE) && (rooms.get(i).getType().equals(room1.getType()) && rooms.get(i).getDiaFinal().after(room1.getDiaInicial()))) {
+               // gestbook.addBooking(1, room1.getId(), room1.getDiaInicial(), room1.getDiaFinal(),fare);
                 System.out.println("Se asigno la habitacion" + i);
             }
         }

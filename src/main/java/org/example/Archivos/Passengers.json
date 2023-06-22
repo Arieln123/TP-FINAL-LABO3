@@ -22,4 +22,12 @@
   "country" : "Arg",
   "dni" : "123123123",
   "status" : "ACTIVE"
+}, {
+  "name" : "a",
+  "lastName" : "qaf",
+  "id" : 4,
+  "address" : "asdfaf",
+  "country" : "asdada",
+  "dni" : "1213",
+  "status" : "ACTIVE"
 } ]
