@@ -105,7 +105,7 @@ public class AdministratorRepo implements IRepository<Administrator> {
         cargar();
 
         for (Administrator c : this.administrators){
-            if(c.equals(objeto.getDni())){
+            if(c.equals(objeto)){
                 return c;
             }
         }

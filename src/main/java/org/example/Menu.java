@@ -1,11 +1,9 @@
 package org.example;
 
+import org.example.Modelos.Administrator;
 import org.example.Modelos.Passenger;
 import org.example.Modelos.Room;
-import org.example.Repositorios.IRepository;
-import org.example.Repositorios.PassengerRepo;
-import org.example.Repositorios.RecepcionRepo;
-import org.example.Repositorios.RoomRepo;
+import org.example.Repositorios.*;
 import org.example.Servicios.GestionAdministrator;
 import  org.example.Modelos.Recepcionist;
 import org.example.Servicios.GestionPassenger;
@@ -41,6 +39,7 @@ public class Menu {
             System.out.println("Que clase de usuario eres?:");
             System.out.println(BLUE+"    1- Administrador"+RESET);
             System.out.println(GREEN+"    2- Recepcionista"+RESET);
+            System.out.printf("    3- TERMINAR\n");
 
             try {
                 opcion = scanner.nextInt();
@@ -74,37 +73,51 @@ public class Menu {
     public void administratorMenu(Scanner scanner) {
         String seguir = "s";
         int opcion = 0;
-
+        Administrator admin=new Administrator();
+        AdministratorRepo repo=new AdministratorRepo();
+        Scanner sc=new Scanner(System.in);
 
         while (seguir.equalsIgnoreCase("s")) {
-            System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", que desea hacer?");
-            System.out.println(YELLOW+"    1- Listar Administradores"+RESET);
-            System.out.println(GREEN+"    2- Crear usuarios o Habitacion"+RESET);
-            System.out.println(RED+"    3- Eliminar usuarios"+RESET);
-            System.out.println("    4-Volver al menu anterior");
-            Scanner scanner1 = scanner;
-            GestionAdministrator admin = new GestionAdministrator();
+            System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", ingrese su DNI?");
+            admin.setDni(sc.nextLine());
 
-            try {
-                opcion = scanner1.nextInt();
-            } catch (RuntimeException e) {
-                System.out.println("Caracter invalido, debe ingresar un numero");
-                scanner1.nextLine();
-            }
-            switch (opcion) {
-                case 1:
-                    ListaMenuAdministrador(scanner);
 
-                    break;
-                case 2:
+            boolean verdad = repo.existe(admin);
+            if (verdad == false) {
+                System.out.println("ERROR");
+                administratorMenu(scanner);
+            } else {
+                System.out.print(BLUE+"Bienvenido, ");
+                System.out.print(repo.info(admin).getName());
+                System.out.print(" ");
+                System.out.println(repo.info(admin).getLastName());
+                System.out.println("Que deseas hacer?");
+                System.out.println(YELLOW + "    1- Listar Administradores" + RESET);
+                System.out.println(GREEN + "    2- Crear usuarios o Habitacion" + RESET);
+                System.out.println(RED + "    3- Eliminar usuarios" + RESET);
+                System.out.println("    4-Volver al menu anterior");
+
+                try {
+                    opcion = sc.nextInt();
+                } catch (RuntimeException e) {
+                    System.out.println("Caracter invalido, debe ingresar un numero");
+                    sc.nextLine();
+                }
+                switch (opcion) {
+                    case 1:
+                        ListaMenuAdministrador(scanner);
+
+                        break;
+                    case 2:
                         altaMenuAdministrador(scanner);
                         break;
-                case 3:
-                       bajaMenuAdministrador(scanner);
-                       break;
-                case 4:
-                    startMenu(scanner);
-                    break;
+                    case 3:
+                        bajaMenuAdministrador(scanner);
+                        break;
+                    case 4:
+                        startMenu(scanner);
+                        break;
+                }
             }
         }
     }
@@ -113,18 +126,25 @@ public class Menu {
 
         Recepcionist recepcionist = new Recepcionist();
         GestionRecepcionist gest=new GestionRecepcionist();
+        RecepcionRepo repo=new RecepcionRepo();
         GestionRoom gestr = new GestionRoom();
         IRepository<Room> roomRepo=new RoomRepo();
         IRepository<Passenger> passRepo=new PassengerRepo();
         Scanner sc=new Scanner(System.in);
-        System.out.println("Bienvenido"+GREEN+"RECEPCIONISTA"+GREEN+", ingrese su DNI");
+        System.out.println("Bienvenido"+GREEN+" RECEPCIONISTA"+RESET+", ingrese su DNI");
         recepcionist.setDni(sc.nextLine());
 
-        if (recepcionist == null) {
+        boolean  verdad=repo.existe(recepcionist);
+        if (verdad == false ) {
             System.out.println("ERROR");
             recepcionistMenu(scanner);
         } else {
-            System.out.println("Bienvenido, Que deseas hacer?");
+            System.out.print(GREEN+"Bienvenido, ");
+            System.out.print(repo.info(recepcionist).getName());
+            System.out.print(" ");
+            System.out.println(repo.info(recepcionist).getLastName());
+            System.out.println("Que deseas hacer?");
+            System.out.println(RESET);
             System.out.println("    1- Hacer reservas");
             System.out.println("    2- Ver estado de habitaciones");
             System.out.println("    3- Ver pasajeros");
