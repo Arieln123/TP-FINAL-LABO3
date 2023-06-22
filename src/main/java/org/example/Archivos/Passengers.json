@@ -6,4 +6,12 @@
   "country" : "Argentina",
   "dni" : "35620677",
   "status" : "ACTIVE"
+}, {
+  "name" : "Tom",
+  "lastName" : "LOpz",
+  "id" : 2,
+  "address" : "Casa",
+  "country" : "Arg",
+  "dni" : "444444444",
+  "status" : "ACTIVE"
 } ]

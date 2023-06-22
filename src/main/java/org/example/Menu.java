@@ -4,9 +4,11 @@ import org.example.Modelos.Passenger;
 import org.example.Modelos.Room;
 import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
+import org.example.Repositorios.RecepcionRepo;
 import org.example.Repositorios.RoomRepo;
 import org.example.Servicios.GestionAdministrator;
 import  org.example.Modelos.Recepcionist;
+import org.example.Servicios.GestionPassenger;
 import org.example.Servicios.GestionRecepcionist;
 import org.example.Servicios.GestionRoom;
 
@@ -76,7 +78,7 @@ public class Menu {
 
         while (seguir.equalsIgnoreCase("s")) {
             System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", que desea hacer?");
-            System.out.println("    1- Listar Administradores");
+            System.out.println(YELLOW+"    1- Listar Administradores"+RESET);
             System.out.println("    2- Crear usuarios o Habitacion");
             System.out.println("    3- Eliminar usuarios");
             System.out.println("    4-Volver al menu anterior");
@@ -91,7 +93,7 @@ public class Menu {
             }
             switch (opcion) {
                 case 1:
-                    admin.listAdministrator();
+                    ListaMenuAdministrador(scanner);
 
                     break;
                 case 2:
@@ -186,7 +188,9 @@ public class Menu {
                 case  5:
                     seguir="n";
                     break;
+
                 default:
+
                     System.out.println("el numero no es valido");
                     break;
             }
@@ -213,7 +217,7 @@ public class Menu {
             System.out.println("2- Recepcionista");
             System.out.println("3- Pasajero");
             System.out.println("4- Habitacion");
-            System.out.println("Cualquier otra tecla- Volver al menu anterior");
+            System.out.println("5-Volver");
 
             try {
                 opcion = scanner.nextInt();
@@ -249,7 +253,62 @@ public class Menu {
             }
         }
     }
+
+
+
+
+    public  void ListaMenuAdministrador(Scanner scanner){
+
+        Scanner sc=new Scanner(System.in);
+        String seguir = "s";
+        int opcion = 0;
+
+
+        while (seguir.equalsIgnoreCase("s")) {
+
+            System.out.println("que usuario desea" + YELLOW + " Listar" + RESET);
+            System.out.println("1- Administrador");
+            System.out.println("2- Recepcionista");
+            System.out.println("3- Pasajero");
+            System.out.println("4- Habitacion");
+            System.out.println("5-Volver");
+
+            try {
+                opcion = scanner.nextInt();
+            } catch (RuntimeException e) {
+                System.out.println("Caracter invalido, debe ingresar un numero");
+                scanner.nextLine();
+            }
+
+            switch (opcion) {
+                case 1:
+                    GestionAdministrator admin = new GestionAdministrator();
+                    admin.listAdministrator();
+
+                    break;
+                case 2:
+                    GestionRecepcionist recep=new GestionRecepcionist();
+                        recep.listRecepcionist();
+                    break;
+                case 3:
+                    GestionPassenger pass =new GestionPassenger();
+                    pass.listPassenger();
+                    break;
+                case 4:
+
+                    break;
+                case  5:
+                    seguir="n";
+                    break;
+                default:
+                    System.out.println("el numero no es valido");
+                    break;
+            }
+
+            if (!seguir.equalsIgnoreCase("n")) {
+                System.out.println("¿Desea volver al menu? s/n");
+                seguir = scanner.next();
+            }
+        }
+    }
 }
-
-
-
