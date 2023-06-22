@@ -8,6 +8,7 @@ import org.example.Repositorios.RoomRepo;
 import org.example.Servicios.GestionAdministrator;
 import  org.example.Modelos.Recepcionist;
 import org.example.Servicios.GestionRecepcionist;
+import org.example.Servicios.GestionRoom;
 
 
 import java.util.Scanner;
@@ -54,7 +55,7 @@ public class Menu {
     public void administratorMenu() {
         System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR"+RESET+", que desea hacer?");
         System.out.println("    1- Listar Administradores");
-        System.out.println("    2- Crear usuarios");
+        System.out.println("    2- Crear usuarios o Habitacion");
         System.out.println("    3- Eliminar usuarios");
         System.out.println("    4-Volver al menu anterior");
         GestionAdministrator admin = new GestionAdministrator();
@@ -72,6 +73,9 @@ public class Menu {
                 System.out.println("1- Administrador");
                 System.out.println("2- Recepcionista");
                 System.out.println("3- Pasajero");
+                System.out.println("4- Habitacion");
+                System.out.println("Cualquier otra tecla- Volver al menu anterior");
+
                 switch (rta) {
                     case "1":
                         admin.addAdministrator();
@@ -83,6 +87,15 @@ public class Menu {
                         return;
                     case "3":
                         admin.addPassengert();
+                        break;
+                    case "4":
+                        GestionRoom room= new GestionRoom();
+                        room.addRoom();
+                        break;
+
+                    default:
+                        System.out.println("\n\n\n");
+                        administratorMenu();
                         break;
                 }
                 break;
