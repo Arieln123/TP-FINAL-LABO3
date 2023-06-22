@@ -1,16 +1,13 @@
 package org.example;
 
-import org.example.Modelos.Administrator;
 import org.example.Modelos.Passenger;
 import org.example.Modelos.Room;
-import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
 import org.example.Repositorios.PassengerRepo;
 import org.example.Repositorios.RoomRepo;
 import org.example.Servicios.GestionAdministrator;
 import  org.example.Modelos.Recepcionist;
 import org.example.Servicios.GestionRecepcionist;
-import org.example.Servicios.GestionRoom;
 
 
 import java.util.Scanner;
@@ -31,17 +28,19 @@ public class Menu {
     }
 
     public void startMenu() {
-
+        Scanner sc=new Scanner(System.in);
         System.out.println("Bienvenido al sistema de reservas de HOTEL TRESVAGOS");
         System.out.println("Que clase de usuario eres?:");
         System.out.println(BLUE+"    1- Administrador"+RESET);
         System.out.println(GREEN+"    2- Recepcionista"+RESET);
         System.out.println(YELLOW+"    3- Pasajero"+RESET);
-        switch (answerInt(2)) {
-            case 1:
+        System.out.print("Respuesta: ");
+        String rta = sc.next();
+        switch (rta) {
+            case "1":
                 administratorMenu();
                 break;
-            case 2:
+            case "2":
                 recepcionistMenu();
                 break;
             default:
@@ -49,7 +48,7 @@ public class Menu {
                 startMenu();
                 break;
         }
-
+    sc.close();
     }
 
     public void administratorMenu() {
@@ -59,53 +58,54 @@ public class Menu {
         System.out.println("    3- Eliminar usuarios");
         System.out.println("    4-Volver al menu anterior");
         GestionAdministrator admin = new GestionAdministrator();
-
-        switch (answerInt(4)) {
-            case 1:
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Respuesta: ");
+        String rta = sc.next();
+        switch (rta) {
+            case "1":
                 System.out.println(BLUE + "La lista de administradores activos:" + RESET);
                 admin.listAdministrator();
                 administratorMenu();
                 break;
-            case 2:
+            case "2":
                 System.out.println("que usuario desea" + GREEN + " crear" + RESET);
                 System.out.println("1- Administrador");
                 System.out.println("2- Recepcionista");
                 System.out.println("3- Pasajero");
-                switch (answerInt(3)) {
-                    case 1:
+                switch (rta) {
+                    case "1":
                         admin.addAdministrator();
                         administratorMenu();
                         return;
-                    case 2:
+                    case "2":
                         admin.addRecepcionist();
-                        System.out.println("asd");
                         administratorMenu();
                         return;
-                    case 3:
-                        System.out.println("asd");
+                    case "3":
                         admin.addPassengert();
                         break;
                 }
                 break;
-            case 3:
+            case "3":
                 System.out.println("que usuario desea" + RED + "eliminar" + RESET);
                 System.out.println("1- Administrador");
                 System.out.println("2- Recepcionista");
                 System.out.println("3- Pasajero");
-                switch (answerInt(3)) {
-                    case 1:
+                switch (rta) {
+                    case "1":
                         admin.deleteAdministrator();
                         administratorMenu();
 
                         break;
-                    case 2:
+                    case "2":
 
                         break;
-                    case 3:
+                    case "3":
                         administratorMenu();
                         break;
-                    case 5:
-                        startMenu();
+                    case "4":
+                        System.out.println("\n\n\n");
+                        administratorMenu();
                         break;
                     default:
                         System.out.println("\n\n\n");
@@ -113,28 +113,18 @@ public class Menu {
                         break;
                 }
                 break;
-            case 4:
+            case "4":
+                System.out.println("\n\n\n");
+                startMenu();
+                break;
+            default:
                 System.out.println("\n\n\n");
                 administratorMenu();
                 break;
         }
+        sc.close();
     }
-               public int answerInt(int lenght) {
-                Scanner sc = new Scanner(System.in);
-                int rta = 0;
-                do {
-                    System.out.print("Respuesta: ");
-                    rta = sc.nextInt();
-                } while (rta < 0 || rta > lenght);
-                int res=rta;
-                sc.close();
-                return res;
-            }
-           public int answerInt() {
-                Scanner sc = new Scanner(System.in);
-                System.out.print("Respuesta: ");
-                return sc.nextInt();
-            }
+
 
 
     public void recepcionistMenu() {
@@ -144,7 +134,7 @@ public class Menu {
         IRepository<Room> roomRepo=new RoomRepo();
         IRepository<Passenger> passRepo=new PassengerRepo();
         Scanner sc=new Scanner(System.in);
-        System.out.println("Bienvenido RECEPCIONISTA, ingrese su DNI");
+        System.out.println("Bienvenido"+GREEN+"RECEPCIONISTA"+GREEN+", ingrese su DNI");
         recepcionist.setDni(sc.nextLine());
 
         if (recepcionist == null) {
@@ -156,14 +146,17 @@ public class Menu {
             System.out.println("    1- Hacer reservas");
             System.out.println("    2- Ver estado de habitaciones");
             System.out.println("    3- Ver pasajeros");
-            switch (answerInt(3)) {
-                case 1:
+
+            System.out.print("Respuesta: ");
+            String rta = sc.next();
+            switch (rta) {
+                case "1":
                      gest.makeReservation();
                     break;
-                case 2:
+                case "2":
                     System.out.println(roomRepo.listar());
                     break;
-                case 3:
+                case "3":
                     System.out.println(passRepo.listar());
                     break;
                 default:
@@ -172,6 +165,7 @@ public class Menu {
                     break;
             }
         }
+        sc.close();
     }
 
 /*
