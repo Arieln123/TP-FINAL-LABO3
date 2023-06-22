@@ -2,14 +2,19 @@ package org.example.Servicios;
 
 
 import org.example.Modelos.*;
+import org.example.Repositorios.AdministratorRepo;
 import org.example.Repositorios.IRepository;
+import org.example.Repositorios.RecepcionRepo;
 import org.example.Repositorios.RoomRepo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import  java.util.Scanner;
 
 public class GestionRoom {
     IRepository<Room> roomRepo=new RoomRepo();
+    ArrayList<Room> roomList = new ArrayList<>();
 
     public void addRoom(Scanner scanner) {
         Scanner sc=new Scanner(System.in);
@@ -17,19 +22,23 @@ public class GestionRoom {
         String seguir = "s";
 
         while (seguir.equalsIgnoreCase("s")) {
-
+            roomList = roomRepo.listar();
             System.out.println("Ingrese el Id");
             room.setId(sc.nextInt());
+            room.setId(roomList.size()+1);
             System.out.println("Ingrese el tipo de habitación" + " 1-  SIMPLE, 2-DOBLE, 3-SUITE");
             int input=sc.nextInt();
-            if (input==1)
-                room.setType(Type.SIMPLE);
-            if (input==2)
-                room.setType(Type.DOBLE);
-            if(input==3)
-                room.setType(Type.SUITE);
-
-            room.setId(roomRepo.listar().size()+1);
+            switch (input) {
+                case 1:
+                    room.setType(Type.SIMPLE);
+                    break;
+                case 2:
+                    room.setType(Type.DOBLE);
+                    break;
+                case  3:
+                    room.setType(Type.SUITE);
+                    break;
+            }
             room.setStatus(RoomStatus.DISPONIBLE);
             try{
                 if (!roomRepo.existe(room)){
@@ -42,10 +51,7 @@ public class GestionRoom {
             }
             catch (IOException e){
                 System.out.println("La habitacion ya existe");
-
             }
-
-
             System.out.println("¿Desea agregar otra habitacion? s/n");
             seguir = sc.next();
         }
@@ -74,6 +80,16 @@ public class GestionRoom {
             }
             System.out.println("¿Desea modificar otra Habitacion? s/n");
             seguir = scanner.next();
+        }
+    }
+
+    public void listRoom() {
+
+        RoomRepo room= new RoomRepo();
+        List<Room> lista =room.listar();
+
+        for (int i=0;i<lista.size();i++){
+            System.out.println(lista.get(i));
         }
     }
 

@@ -29,6 +29,19 @@ public class GestionRecepcionist implements Reservation{
     public GestionRecepcionist() {
     }
 
+    public Recepcionist infoRecep(String dni){
+        RecepcionRepo admin=new RecepcionRepo();
+        List<Recepcionist> lista =admin.listar();
+        Recepcionist rece = new Recepcionist();
+        for (int i=0;i<lista.size();i++){
+            if (lista.get(i).getDni()== dni) {
+                rece = lista.get(i);
+                return rece;
+            }
+        }
+        return null;
+    }
+
     public void listRecepcionist() {
 
        RecepcionRepo admin=new RecepcionRepo();

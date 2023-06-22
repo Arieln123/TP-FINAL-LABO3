@@ -10,7 +10,6 @@ public interface IRepository <T>{
     void agregar(T...objeto);
     void eliminar(T objeto);
     void modificar(T objeto);
-
     boolean existe(T objeto);
     T info(T objeto);
 

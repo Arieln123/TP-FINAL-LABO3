@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 
 public class RoomRepo implements IRepository<Room> {
-    private final File pathJson = new File("C:\\Users\\Usuario\\Desktop\\Proyecto\\TP-FINAL-LABO3\\src\\main\\java\\org\\example\\Archivos\\Rooms.json");
+    private final File pathJson = new File("src/main/java/org/example/Archivos/Rooms.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private ArrayList<Room> rooms;
 

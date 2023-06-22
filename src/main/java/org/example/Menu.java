@@ -100,9 +100,11 @@ public class Menu {
                         altaMenuAdministrador(scanner);
                         break;
                 case 3:
-                    bajaMenuAdministrador(scanner);
+                       bajaMenuAdministrador(scanner);
                        break;
-
+                case 4:
+                    startMenu(scanner);
+                    break;
             }
         }
     }
@@ -111,6 +113,7 @@ public class Menu {
 
         Recepcionist recepcionist = new Recepcionist();
         GestionRecepcionist gest=new GestionRecepcionist();
+        GestionRoom gestr = new GestionRoom();
         IRepository<Room> roomRepo=new RoomRepo();
         IRepository<Passenger> passRepo=new PassengerRepo();
         Scanner sc=new Scanner(System.in);
@@ -121,8 +124,7 @@ public class Menu {
             System.out.println("ERROR");
             recepcionistMenu(scanner);
         } else {
-            System.out.println("Hola " + recepcionist.getName() + "!");
-            System.out.println("Que deseas hacer?");
+            System.out.println("Bienvenido, Que deseas hacer?");
             System.out.println("    1- Hacer reservas");
             System.out.println("    2- Ver estado de habitaciones");
             System.out.println("    3- Ver pasajeros");
@@ -134,7 +136,7 @@ public class Menu {
                      gest.makeReservation(scanner);
                     break;
                 case "2":
-                    System.out.println(roomRepo.listar());
+                    gestr.listRoom();
                     break;
                 case "3":
                     System.out.println(passRepo.listar());
@@ -284,7 +286,6 @@ public class Menu {
                 case 1:
                     GestionAdministrator admin = new GestionAdministrator();
                     admin.listAdministrator();
-
                     break;
                 case 2:
                     GestionRecepcionist recep=new GestionRecepcionist();

@@ -1,6 +1,7 @@
-{
-  "name": "Archivos",
-  "version": "1.0.0",
-  "dependencies": {
-  }
-}
+[ {
+  "id" : 1,
+  "type" : "SIMPLE",
+  "status" : "DISPONIBLE",
+  "diaInicial" : null,
+  "diaFinal" : null
+} ]
