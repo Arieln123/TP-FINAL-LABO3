@@ -90,8 +90,8 @@ public class Room {
                 "id=" + id +
                 ", type=" + type +
                 ", status=" + status +
-                ", diaInicial=" + diaInicial +
-                ", diaFinal=" + diaFinal +
-                '}';
+                ", diaInicial=" + diaInicial.getDate() +"/" + (int)(diaInicial.getMonth()+1) + "/" + (int)(diaInicial.getYear()+1900) +
+                ", diaFinal=" + diaFinal.getDate()+ "/" + (int)(diaFinal.getMonth()+1) + "/" + (int)(diaFinal.getYear()+1900) +
+        '}';
     }
 }

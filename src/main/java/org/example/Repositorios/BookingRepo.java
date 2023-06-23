@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 
 public class BookingRepo implements IRepository<Booking>{
-    private final File pathJson = new File("src/main/java/org/example/Archivos/Bookings.json");
+    private final File pathJson = new File("src/main/java/org/example/Archivos/Booking.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private ArrayList<Booking> bookings;
 

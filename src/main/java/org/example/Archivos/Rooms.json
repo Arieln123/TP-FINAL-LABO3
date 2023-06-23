@@ -1,31 +1,25 @@
 [ {
   "id" : 1,
-  "type" : "DOBLE",
+  "type" : "SIMPLE",
   "status" : "OCUPADO",
-  "diaInicial" : null,
-  "diaFinal" : null
+  "diaInicial" : 1687489200000,
+  "diaFinal" : 1688094000000
 }, {
   "id" : 2,
-  "type" : "SUITE",
-  "status" : "NO_DISPONIBLE",
-  "diaInicial" : null,
-  "diaFinal" : null
+  "type" : "DOBLE",
+  "status" : "OCUPADO",
+  "diaInicial" : 1687489200000,
+  "diaFinal" : 1688094000000
 }, {
   "id" : 3,
-  "type" : "DOBLE",
-  "status" : "DISPONIBLE",
-  "diaInicial" : null,
-  "diaFinal" : null
+  "type" : "SUITE",
+  "status" : "OCUPADO",
+  "diaInicial" : 1687489200000,
+  "diaFinal" : 1688094000000
 }, {
   "id" : 4,
-  "type" : "SUITE",
-  "status" : "DISPONIBLE",
-  "diaInicial" : null,
-  "diaFinal" : null
-}, {
-  "id" : 5,
   "type" : "SIMPLE",
-  "status" : "DISPONIBLE",
-  "diaInicial" : null,
-  "diaFinal" : null
+  "status" : "OCUPADO",
+  "diaInicial" : 1687489200000,
+  "diaFinal" : 1688094000000
 } ]

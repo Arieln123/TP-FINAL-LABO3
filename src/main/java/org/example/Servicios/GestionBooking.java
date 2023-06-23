@@ -3,7 +3,7 @@ package org.example.Servicios;
 import org.example.Modelos.Booking;
 import org.example.Repositorios.BookingRepo;
 import org.example.Repositorios.IRepository;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,8 +32,9 @@ public class GestionBooking {
             book.setStartDate(strDate);
             book.setEndDate(endDate);
             book.setFares(fares);
+            bookRepo.agregar(book);
     }
-    public void deleteAdministrator() {
+    public void deleteBooking() {
         Scanner sc=new Scanner(System.in);
         Booking book = new Booking();
         String seguir = "s";

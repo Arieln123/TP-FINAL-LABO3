@@ -56,7 +56,7 @@ public class GestionRecepcionist implements Reservation{
         }
     }
 
-    public void addPassenger(Scanner scanner){
+    public void  addPassenger(Scanner scanner){
         GestionAdministrator admin=new GestionAdministrator();
         admin.addPassengert(scanner);
     }
@@ -69,8 +69,9 @@ public class GestionRecepcionist implements Reservation{
         Room room1=new Room();
         scanner = new Scanner(System.in);
         GestionBooking gestbook = new GestionBooking();
-
         addPassenger(scanner);
+        Date fechaInicial;
+        Date fechaFinal;
 
         System.out.println("ingrese tipo de habitacion deseada\n "+" 1-SIMPLE $50 x noche , 2-DOBLE $100 x noche , 3-SUITE $200 x noche ");
         int input=scanner.nextInt();
@@ -86,24 +87,27 @@ public class GestionRecepcionist implements Reservation{
                 break;
         }
 
-        System.out.println("ingrese fecha de ingreso de pasajero:(YYYY/MM/DD)");
+        System.out.println("ingrese fecha de ingreso de pasajero:(YYYY-MM-DD)");
         try {
-            String dateinc = scanner.next();
-            Date date1 = formato.parse(dateinc);
-            room1.setDiaInicial(date1);
-            //room1.setDiaInicial(formato.parse(scanner.nextLine()));
-        } catch (ParseException e) {
+            String fecha=scanner.next();
+            fechaInicial=formato.parse(fecha);
+            room1.setDiaInicial(fechaInicial);
+
+        }catch (ParseException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("ingrese fecha de egreso de pasajero:(YYYY/MM/DD)");
+        System.out.println("ingrese anio,mes y dia de egreso de pasajero:(YYYY-MM-DD)");
         try {
-            room1.setDiaFinal(formato.parse(scanner.nextLine()));
-        } catch (ParseException e) {
+            String fecha=scanner.next();
+            fechaFinal=formato.parse(fecha);
+            room1.setDiaFinal(fechaFinal);
+
+        }catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        long dias = Math.abs(room1.getDiaFinal().getTime() - room1.getDiaInicial().getTime());
 
-        int dias = (int) ((room1.getDiaFinal().getTime() - room1.getDiaInicial().getTime()));
         double fare =0.0;
         switch (room1.getType()){
             case SIMPLE:
@@ -119,16 +123,16 @@ public class GestionRecepcionist implements Reservation{
                 break;
         }
 
-
-        for(int i=0;i<rooms.size();i++){
-            //aca tengo que comparar status tipo y fechas
-            if(rooms.get(i).getStatus().equals(RoomStatus.DISPONIBLE) && (rooms.get(i).getType().equals(room1.getType()) && rooms.get(i).getDiaFinal().after(room1.getDiaInicial()))) {
-               // gestbook.addBooking(1, room1.getId(), room1.getDiaInicial(), room1.getDiaFinal(),fare);
+        for(int i=0;i<rooms.size();i++) {
+            if (rooms.get(i).getStatus().equals(RoomStatus.DISPONIBLE) && (rooms.get(i).getType().equals(room1.getType()) && (rooms.get(i).getDiaFinal().before(room1.getDiaInicial())))) {
+                gestbook.addBooking(1, room1.getId(), fechaInicial,fechaFinal, fare);
+                rooms.get(i).setDiaInicial(fechaInicial);
+                rooms.get(i).setDiaFinal(fechaFinal);
+                rooms.get(i).setStatus(RoomStatus.OCUPADO);
+                roomRepo.modificar(rooms.get(i));
                 System.out.println("Se asigno la habitacion" + i);
             }
         }
     }
-
-
 
 }

@@ -4,11 +4,8 @@ import org.example.Modelos.Administrator;
 import org.example.Modelos.Passenger;
 import org.example.Modelos.Room;
 import org.example.Repositorios.*;
-import org.example.Servicios.GestionAdministrator;
+import org.example.Servicios.*;
 import  org.example.Modelos.Recepcionist;
-import org.example.Servicios.GestionPassenger;
-import org.example.Servicios.GestionRecepcionist;
-import org.example.Servicios.GestionRoom;
 
 
 import java.util.Scanner;
@@ -78,7 +75,7 @@ public class Menu {
         Scanner sc=new Scanner(System.in);
 
         while (seguir.equalsIgnoreCase("s")) {
-            System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", ingrese su DNI?");
+            System.out.println("Bienvenido" + BLUE + " ADMINISTRADOR" + RESET + ", ingrese su DNI");
             admin.setDni(sc.nextLine());
 
 
@@ -91,9 +88,9 @@ public class Menu {
                 System.out.print(repo.info(admin).getName());
                 System.out.print(" ");
                 System.out.println(repo.info(admin).getLastName());
-                System.out.println("Que deseas hacer?");
-                System.out.println(YELLOW + "    1- Listar Administradores" + RESET);
-                System.out.println(GREEN + "    2- Crear usuarios o Habitacion" + RESET);
+                System.out.println("¿Que deseas hacer?");
+                System.out.println(YELLOW + "    1- Listar" + RESET);
+                System.out.println(GREEN + "    2- Crear" + RESET);
                 System.out.println(RED + "    3- Eliminar usuarios" + RESET);
                 System.out.println("    4-Volver al menu anterior");
 
@@ -124,7 +121,6 @@ public class Menu {
 
     public void recepcionistMenu(Scanner scanner) {
         String seguir = "s";
-
         Recepcionist recepcionist = new Recepcionist();
         GestionRecepcionist gest=new GestionRecepcionist();
         RecepcionRepo repo=new RecepcionRepo();
@@ -149,6 +145,7 @@ public class Menu {
             System.out.println("    1- Hacer reservas");
             System.out.println("    2- Ver estado de habitaciones");
             System.out.println("    3- Ver pasajeros");
+            System.out.println("    4- Listado de reservas y tarifas.");
 
             System.out.print("Respuesta: ");
             int rta = sc.nextInt();
@@ -158,16 +155,19 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println(YELLOW+"LISTA DE HABITACIONES"+RESET);
-
                     gestr.listRoom();
                     break;
                 case 3:
                     System.out.println(YELLOW+"LISTA DE PASAJEROS"+RESET);
-
                     GestionPassenger pass =new GestionPassenger();
                     pass.listPassenger();
                     break;
-                case  4:
+                case 4:
+                    System.out.println(YELLOW+"LISTA DE TARIFAS"+RESET);
+                    GestionBooking gestBook=new GestionBooking();
+                    gestBook.listBooking();
+                    break;
+                case  5:
                     seguir="n";
                     break;
                 default:
@@ -196,7 +196,7 @@ public class Menu {
             System.out.println("2- Recepcionista");
             System.out.println("3- Pasajero");
             System.out.println("4- Habitacion");
-            System.out.println("Cualquier otra tecla- Volver al menu anterior");
+            System.out.println("5- Volver al menu anterior");
 
             try {
                 opcion = scanner.nextInt();
@@ -299,7 +299,7 @@ public class Menu {
 
         while (seguir.equalsIgnoreCase("s")) {
 
-            System.out.println("que usuario desea" + YELLOW + " Listar" + RESET);
+            System.out.println("Que  desea" + YELLOW + " Listar" + RESET);
             System.out.println("1- Administrador");
             System.out.println("2- Recepcionista");
             System.out.println("3- Pasajero");

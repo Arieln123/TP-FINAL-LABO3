@@ -8,7 +8,11 @@ import org.example.Repositorios.RecepcionRepo;
 import org.example.Repositorios.RoomRepo;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import  java.util.Scanner;
 
@@ -16,17 +20,23 @@ public class GestionRoom {
     IRepository<Room> roomRepo=new RoomRepo();
     ArrayList<Room> roomList = new ArrayList<>();
 
-    public void addRoom(Scanner scanner) {
+    public void addRoom(Scanner scanner)  {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Scanner sc=new Scanner(System.in);
         Room room = new Room();
         String seguir = "s";
 
         while (seguir.equalsIgnoreCase("s")) {
             roomList = roomRepo.listar();
-           /* System.out.println("Ingrese el Id");
-            room.setId(sc.nextInt());*/
-
             room.setId(roomRepo.listar().size()+1);
+            Date fechaInic= null;
+            try {
+                fechaInic = formato.parse("2023-06-22");
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            room.setDiaInicial(fechaInic);
+            room.setDiaFinal(fechaInic);
 
             System.out.println("Ingrese el tipo de habitación" + " 1-  SIMPLE, 2-DOBLE, 3-SUITE");
             int input=sc.nextInt();
@@ -42,16 +52,11 @@ public class GestionRoom {
                     break;
             }
             room.setStatus(RoomStatus.DISPONIBLE);
-            try{
-                if (!roomRepo.existe(room)){
-                    roomRepo.modificar(room);
-                    System.out.println("La nueva habitacion se ha agregado  correctamente");
-                }
-                else {
-                    throw new IOException("Este es un error personalizado");
-                }
+            if (!roomRepo.existe(room)){
+                roomRepo.agregar(room);
+                System.out.println("La nueva habitacion se ha agregado  correctamente");
             }
-            catch (IOException e){
+            else {
                 System.out.println("La habitacion ya existe");
             }
             System.out.println("¿Desea agregar otra habitacion? s/n");

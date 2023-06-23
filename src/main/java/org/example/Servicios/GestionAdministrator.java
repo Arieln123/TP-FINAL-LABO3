@@ -122,7 +122,7 @@ public class GestionAdministrator  {
             }
 
 
-            System.out.println("¿Desea agregar otro Admin? s/n");
+            System.out.println("¿Desea agregar otro pasajero? s/n");
             seguir = sc.next();
         }
 

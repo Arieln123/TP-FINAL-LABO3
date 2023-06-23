@@ -1,0 +1,22 @@
+[ {
+  "idBooking" : 1,
+  "idPassenger" : 1,
+  "idRoom" : 0,
+  "startDate" : 1687489200000,
+  "endDate" : 1688094000000,
+  "fares" : 3.024E10
+}, {
+  "idBooking" : 2,
+  "idPassenger" : 1,
+  "idRoom" : 0,
+  "startDate" : 1687489200000,
+  "endDate" : 1688094000000,
+  "fares" : 3.024E10
+}, {
+  "idBooking" : 3,
+  "idPassenger" : 1,
+  "idRoom" : 0,
+  "startDate" : 1687489200000,
+  "endDate" : 1688094000000,
+  "fares" : 1.2096E11
+} ]

@@ -1,5 +1,5 @@
 package org.example.Modelos;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class Booking {
@@ -70,4 +70,20 @@ public class Booking {
     public void setFares(double fares) {
         this.fares = fares;
     }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "\n Booking{" +
+                "idBooking=" + idBooking +
+                ", idPassenger=" + idPassenger +
+                ", idRoom=" + idRoom +
+                ", diaInicial=" + startDate.getDate() +"/" + (int)(startDate.getMonth()+1) + "/" + (int)(startDate.getYear()+1900) +
+                ", diaFinal=" + endDate.getDate()+ "/" + (int)(endDate.getMonth()+1) + "/" + (int)(endDate.getYear()+1900) +
+                ", tarifa=" + fares +
+                '}';
+    }
+
+    //endregion
 }
